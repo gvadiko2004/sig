@@ -1,0 +1,166 @@
+.advantages {
+  // .advantages__inner
+
+  &__inner {
+  }
+
+  // .advantages__title
+
+  &__title {
+    margin-top: 64px;
+    margin-bottom: 32px;
+
+    color: var(--Base-White, #fff);
+    text-align: center;
+
+    /* montserrat/display/medium-medium */
+    font-size: 54px;
+    font-weight: 500;
+    line-height: 110%; /* 59.4px */
+    letter-spacing: var(--Heading-H3_Semibold-Letter-Spacing, 0);
+  }
+
+  // .advantages__blocks
+
+  &__blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  // .advantages__blocks-item
+
+  &__blocks-item {
+    position: relative;
+    border-radius: 12px;
+    background: rgba(23, 23, 23, 0.2); // стеклянный фон
+
+    padding: var(--Space-3xl, 32px);
+
+    border-radius: 12px;
+    background: var(--luiqid-glass, rgba(23, 23, 23, 0.2));
+    background-blend-mode: screen;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0; // заменяет left+right+top+bottom: 0
+
+      border-radius: inherit;
+      padding: 2px; // толщина рамки
+      background: linear-gradient(135deg, #ffffff73, #3b3b3b, #000000);
+
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      z-index: -1; // рамка под содержимым
+    }
+  }
+
+  // .advantages__blocks-icon
+
+  &__blocks-icon {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+
+    border-radius: 12px;
+    background: var(--Base-White, #fff);
+
+    margin-bottom: 50px;
+  }
+
+  // .advantages__blocks-title
+
+  &__blocks-title {
+    margin-bottom: 8px;
+    color: var(--Base-White, #fff);
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 110%; /* 26.4px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  // .advantages__blocks-subtitle
+
+  &__blocks-subtitle {
+    color: var(--Gray-300, #8e8e8e);
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%; /* 22.4px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+}
+
+.advantages {
+  // .advantages__text
+
+  &__text {
+    color: var(--Base-White, #fff);
+    text-align: center;
+
+    /* montserrat/display/small-medium */
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 130%; /* 54.6px */
+    letter-spacing: var(--Heading-H4_Semibold-Letter-Spacing, 0);
+
+    margin: 64px 0 30px 0;
+
+    span {
+      background: var(
+        --1,
+        linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%)
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  // .advantages__text-subtitle
+
+  &__text-subtitle {
+    max-width: 1154px;
+    margin: 0 auto;
+  }
+
+  // .advantages__list
+
+  &__list {
+    max-width: 638px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  // .advantages__list-item
+
+  &__list-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    p {
+      color: var(--Base-White, #fff);
+
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 110%; /* 26.4px */
+      letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+    }
+  }
+}
+.list-reset {
+}

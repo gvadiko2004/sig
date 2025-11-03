@@ -1,0 +1,201 @@
+.service {
+  // .service__inner
+
+  &__inner {
+  }
+
+  // .service__title
+
+  &__title {
+    text-align: center;
+
+    font-size: 54px;
+    font-weight: 500;
+    line-height: 110%; /* 59.4px */
+    letter-spacing: var(--Heading-H3_Semibold-Letter-Spacing, 0);
+
+    background: var(
+      --1,
+      linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-top: 125px;
+    margin-bottom: 16px;
+  }
+
+  // .service__subtitle
+
+  &__subtitle {
+    color: var(--Gray-200, #b4b4b4);
+    text-align: center;
+
+    /* montserrat/title/large-regular */
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 110%; /* 22px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    margin-bottom: 32px;
+
+    max-width: 710px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.service-blocks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+
+  // .service-blocks__item
+
+  &__item {
+    position: relative;
+    z-index: 1;
+    overflow: hidden; // обязательно!
+
+    display: flex;
+    padding: 34px 28px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--Space-2xs, 2px);
+
+    border-radius: 12px;
+    background: rgba(23, 23, 23, 0.2); // стеклянный фон
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0; // заменяет left+right+top+bottom: 0
+
+      border-radius: inherit;
+      padding: 2px; // толщина рамки
+      background: linear-gradient(135deg, #ffffff6b, #3b3b3b, #000000);
+
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      z-index: -1; // рамка под содержимым
+    }
+  }
+
+  // .service-blocks__item-icon
+
+  &__item-icon {
+    display: flex;
+    width: 64px;
+    height: 64px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+    background: var(--Base-White, #fff);
+  }
+
+  // .service-blocks__item-title
+
+  &__item-title {
+    margin: 14px 0 10px 0;
+
+    color: var(--Base-White, #fff);
+
+    /* montserrat/title/large-medium */
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 110%; /* 22px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  // .service-blocks__item-subtitle
+
+  &__item-subtitle {
+    color: var(--Gray-100, #d2d2d2);
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%; /* 22.4px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+    margin-bottom: 18px;
+  }
+
+  // .service-blocks__list
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--Space-l, 12px);
+    align-self: stretch;
+  }
+
+  // .service-blocks__list-item
+
+  &__list-item {
+    p {
+      color: var(--Gray-200, #b4b4b4);
+
+      /* montserrat/title/medium-light */
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 110%; /* 17.6px */
+      letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+      display: block;
+
+      position: relative;
+      padding-left: 20px;
+
+      &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        border-radius: 9999px;
+        background: var(--Base-White, #fff);
+
+        width: 8px;
+        height: 8px;
+      }
+    }
+  }
+
+  // .service-blocks__item-link
+
+  &__item-link {
+    color: var(--Base-White, #fff);
+
+    /* tt firs neue/title/medium-medium */
+    font-family: "TT Firs Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 110%; /* 17.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+    text-align: center;
+    padding: 12px 0;
+    margin-top: 20px;
+    width: 100%;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+.list-reset {
+}

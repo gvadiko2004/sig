@@ -1,0 +1,100 @@
+.header {
+  border-bottom: 1px solid var(--Gray-500, #353535);
+  background: var(--luiqid-glass, rgba(23, 23, 23, 0.2));
+  background-blend-mode: screen;
+  backdrop-filter: blur(16.5px);
+  padding: 18px 0;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+
+  // .header__inner
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // .header__right
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  // .header__list
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  // .header__list-link
+
+  &__list-link {
+    color: var(--Gray-300, #8e8e8e);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 0;
+
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background-color: #e59cff;
+    }
+
+    &:hover {
+      color: var(--Gray-100, #d2d2d2);
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+  }
+
+  // .header__btn
+
+  &__btn {
+    border-radius: 8.908px;
+    background: var(
+      --1,
+      linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%)
+    );
+    background-blend-mode: screen;
+
+    display: flex;
+    padding: 9px 24px;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--Gray-700, #101010);
+
+    /* tt firs neue/title/medium-medium */
+    font-family: "TT Firs Neue";
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 110%; /* 17.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  &__border-menu {
+    display: none;
+
+    @media (max-width: 1080px) {
+      display: block;
+    }
+  }
+}

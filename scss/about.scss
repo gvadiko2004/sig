@@ -1,0 +1,110 @@
+.about {
+  // .about__inner
+
+  &__inner {
+  }
+
+  // .about__title
+
+  &__title {
+    color: var(--Base-White, #fff);
+
+    /* montserrat/display/medium-medium */
+    font-size: 54px;
+    font-weight: 500;
+    line-height: 110%; /* 59.4px */
+    letter-spacing: var(--Heading-H3_Semibold-Letter-Spacing, 0);
+
+    margin-top: 148px;
+    margin-bottom: 38px;
+  }
+}
+
+.about-blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 66px;
+
+  .start {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .end {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    margin: 110px 0 0 0;
+  }
+
+  // .about-blocks__item
+
+  &__item {
+    display: flex;
+    padding: 32px 34px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--Space-3xl, 32px);
+
+    position: relative;
+    z-index: 1;
+
+    border-radius: 12px;
+    background: rgba(23, 23, 23, 0.2); // стеклянный фон
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0; // заменяет left+right+top+bottom: 0
+
+      border-radius: inherit;
+      padding: 1px; // толщина рамки
+      background: linear-gradient(135deg, #ffffff6b, #3b3b3b, #000000);
+
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      z-index: -1; // рамка под содержимым
+    }
+  }
+
+  // .about-blocks__icon
+
+  &__icon {
+  }
+
+  // .about-blocks__content
+
+  &__content {
+  }
+
+  // .about-blocks__content-title
+
+  &__content-title {
+    margin-bottom: 18px;
+    color: #fff;
+
+    /* montserrat/headline/small-medium */
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 110%; /* 26.4px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  // .about-blocks__content-subtitle
+
+  &__content-subtitle {
+    color: #fff;
+
+    /* montserrat/title/large-regular */
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 110%; /* 22px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+}

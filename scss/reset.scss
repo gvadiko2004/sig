@@ -1,3 +1,50 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter18pt-Medium.woff2") format("woff2");
+  font-weight: 500;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2");
+  font-weight: 300;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: bold;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
+  font-weight: 500;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: normal;
+
+  font-display: swap;
+}
 
 html {
   scroll-behavior: smooth;
@@ -9,12 +56,14 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: 0.2s ease-in-out;
+  transition: 0.4s ease-in-out;
+  font-family: "Montserrat";
 }
 
 body {
   margin: 0;
   padding: 0;
+  background: var(--Gray-700, #101010);
 }
 
 img {
@@ -38,7 +87,7 @@ a {
 }
 
 .wrapper {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .list-reset {
@@ -53,6 +102,7 @@ a {
   outline: none;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 }
 
 .input-reset {
@@ -66,7 +116,7 @@ a {
 // Custom
 
 .container {
-  max-width: 1280px;
+  max-width: 1250px;
   margin: 0 auto;
   padding: 0 20px;
 }
