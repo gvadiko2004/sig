@@ -1,0 +1,253 @@
+.footer {
+  margin-top: 125px;
+
+  // .footer__inner
+
+  &__inner {
+    .top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .bottom {
+    }
+  }
+
+  // .footer__start
+
+  &__start {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  // .footer__logo
+
+  &__logo {
+  }
+
+  // .footer__end
+
+  &__end {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  // .footer__copyright
+
+  &__copyright {
+    padding: 24px 0;
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 1px;
+      display: block;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0) 0%,
+        #eeeef0 50%,
+        rgba(239, 239, 241, 0) 100%
+      );
+    }
+
+    p {
+      text-align: center;
+
+      color: var(--Base-White, #fff);
+
+      /* montserrat/body/large-regular */
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 120%; /* 14.4px */
+      letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+    }
+  }
+}
+
+.footer-list {
+  // .footer-list__title
+
+  &__title {
+    color: var(--Base-White, #fff);
+    margin-bottom: 16px;
+
+    /* tt firs neue/title/medium-medium */
+    font-family: "TT Firs Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 110%; /* 17.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  // .footer-list__info
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  // .footer-list__info-item
+
+  &__info-item {
+  }
+
+  // .footer-list__info-link
+
+  &__info-link {
+    color: var(--Gray-200, #b4b4b4);
+
+    /* montserrat/title/small-light */
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 140%; /* 19.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.footer-address {
+  // .footer-address__title
+
+  &__title {
+    color: var(--Base-White, #fff);
+    margin-bottom: 16px;
+
+    /* tt firs neue/title/medium-medium */
+    font-family: "TT Firs Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 110%; /* 17.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  // .footer-address__info
+
+  &__info {
+    color: var(--Gray-200, #b4b4b4);
+
+    /* montserrat/title/small-light */
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 140%; /* 19.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+    margin-bottom: 16px;
+  }
+
+  // .footer-address__social
+
+  &__social {
+    color: var(--Base-White, #fff);
+
+    /* tt firs neue/title/medium-medium */
+    font-family: "TT Firs Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 110%; /* 17.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  // .footer-address__list
+
+  &__list {
+    margin-top: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  // .footer-address__list-item
+
+  &__list-item {
+  }
+
+  // .footer-address__list-link
+
+  &__list-link {
+  }
+}
+.footer-contact {
+  // .footer-contact__title
+
+  &__title {
+    color: var(--Base-White, #fff);
+    margin-bottom: 16px;
+
+    /* tt firs neue/title/medium-medium */
+    font-family: "TT Firs Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 110%; /* 17.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  }
+
+  // .footer-contact__content
+
+  &__content {
+    display: flex;
+    gap: 48px;
+  }
+
+  // .footer-contact__col
+
+  &__col {
+  }
+
+  // .footer-contact__col-number
+
+  &__col-number {
+    /* tt firs neue/title/small-medium */
+    font-family: "TT Firs Neue", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 110%; /* 15.4px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    background: var(
+      --1,
+      linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  // .footer-contact__list
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  // .footer-contact__list-schedule
+
+  &__list-schedule {
+    color: var(--Gray-200, #b4b4b4);
+
+    /* montserrat/title/small-light */
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 140%; /* 19.6px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+    cursor: default;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
