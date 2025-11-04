@@ -9,7 +9,7 @@
   &__title {
     text-align: center;
 
-    font-size: 54px;
+    font-size: clamp(1.5rem, 0.789rem + 2.59vw, 3.375rem);
     font-weight: 500;
     line-height: 110%; /* 59.4px */
     letter-spacing: var(--Heading-H3_Semibold-Letter-Spacing, 0);
@@ -24,6 +24,10 @@
 
     margin-top: 125px;
     margin-bottom: 16px;
+
+    @media (max-width: 1080px) {
+      margin-top: 54px;
+    }
   }
 
   // .service__subtitle
@@ -33,7 +37,7 @@
     text-align: center;
 
     /* montserrat/title/large-regular */
-    font-size: 20px;
+    font-size: clamp(0.875rem, 0.733rem + 0.52vw, 1.25rem);
     font-weight: 400;
     line-height: 110%; /* 22px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -43,6 +47,10 @@
     max-width: 710px;
     margin-left: auto;
     margin-right: auto;
+
+    @media (max-width: 1080px) {
+      padding: 0 10px;
+    }
   }
 }
 
@@ -50,6 +58,16 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
+
+  @media (max-width: 1080px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 
   // .service-blocks__item
 
@@ -68,13 +86,17 @@
     border-radius: 12px;
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
 
+    @media (max-width: 440px) {
+      padding: 27px 22px;
+    }
+
     &::before {
       content: "";
       position: absolute;
       inset: 0; // заменяет left+right+top+bottom: 0
 
       border-radius: inherit;
-      padding: 2px; // толщина рамки
+      padding: 1px; // толщина рамки
       background: linear-gradient(135deg, #ffffff6b, #3b3b3b, #000000);
 
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
@@ -98,12 +120,17 @@
 
     border-radius: 12px;
     background: var(--Base-White, #fff);
+
+    @media (max-width: 440px) {
+      width: 54px;
+      height: 54px;
+    }
   }
 
   // .service-blocks__item-title
 
   &__item-title {
-    margin: 14px 0 10px 0;
+    margin: 14px 0 13px 0;
 
     color: var(--Base-White, #fff);
 
@@ -124,6 +151,12 @@
     line-height: 140%; /* 22.4px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
     margin-bottom: 18px;
+
+    @media (max-width: 440px) {
+      margin-bottom: 17px;
+      line-height: 120%;
+      font-size: 14px;
+    }
   }
 
   // .service-blocks__list
@@ -134,6 +167,10 @@
     align-items: flex-start;
     gap: var(--Space-l, 12px);
     align-self: stretch;
+
+    @media (max-width: 440px) {
+      gap: 14px;
+    }
   }
 
   // .service-blocks__list-item
@@ -189,6 +226,11 @@
     padding: 12px 0;
     margin-top: 20px;
     width: 100%;
+
+    @media (max-width: 440px) {
+      margin-top: 34px;
+      font-size: 14px;
+    }
 
     span {
       display: flex;

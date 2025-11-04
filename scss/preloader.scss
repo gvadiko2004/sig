@@ -1,0 +1,181 @@
+.preloader {
+  position: fixed;
+  z-index: 998;
+  width: 100%;
+  height: 100vh;
+  background: var(--Gray-700, #101010);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание по центру */
+  justify-content: center; /* Горизонтальное выравнивание по центру */
+
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+
+  * {
+    transition: none;
+  }
+
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  &.load {
+    // opacity: 0;
+    // pointer-events: none;
+    // visibility: hidden;
+  }
+}
+
+.preloader__circle {
+  /* Здесь вы можете добавить стили для общего круга, если нужно */
+}
+
+.preloader__circle-item {
+  width: 191px;
+  height: 192px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание по центру */
+  justify-content: center; /* Горизонтальное выравнивание по центру */
+
+  position: absolute;
+  left: 50%; /* Смещаем по горизонтали на 50% */
+  top: 50%; /* Смещаем по вертикали на 50% */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Используем translate, чтобы точно центрировать */
+}
+
+.preloader__circle-item span {
+  position: relative;
+  z-index: 10;
+
+  text-align: center;
+
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  background-clip: text;
+  color: #fff;
+}
+
+.preload-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Центрируем элемент */
+}
+
+.item-2 {
+  border-radius: 320px;
+  border: 1px solid var(--Pink-100, #e499ff21);
+  width: 320px;
+  height: 320px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center; /* Выравниваем по вертикали */
+  justify-content: center; /* Выравниваем по горизонтали */
+}
+
+.item-2 .icon {
+  position: absolute;
+  top: -34px;
+  z-index: 3;
+}
+
+.item-3 {
+  border-radius: 320px;
+  border: 1px solid var(--Pink-100, #e499ff21);
+  width: 532px;
+  height: 532px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center; /* Выравниваем по вертикали */
+  justify-content: center; /* Выравниваем по горизонтали */
+}
+
+.circle-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center; /* Центрируем вложенные элементы */
+  align-items: center; /* Центрируем по вертикали */
+
+  border-radius: 50%;
+
+  background: var(--Gray-200, #b4b4b4);
+  pointer-events: none;
+
+  &::before {
+    position: absolute;
+    content: "ssss";
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(180deg, #e499ff 0%, #464fec 100%);
+    filter: blur(22.5px);
+    border-radius: 50%;
+
+    left: 14px;
+    top: 14px;
+  }
+}
+
+.circle-overlay .item {
+  svg {
+    width: 190px;
+    height: 190px;
+  }
+
+  &:nth-child(1) {
+    z-index: 3;
+  }
+}
+
+.filter-sep-1 {
+  width: 259px;
+  height: 264px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background: var(--Pink-100, #e499ff);
+  filter: blur(250px);
+
+  position: absolute;
+  left: -20vw;
+}
+
+.filter-sep-2 {
+  width: 259px;
+  height: 264px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background: var(--Blue-100, #6067ee);
+  filter: blur(250px);
+
+  position: absolute;
+  right: -20vw;
+}

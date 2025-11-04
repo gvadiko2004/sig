@@ -7,9 +7,13 @@
     background-blend-mode: screen;
 
     display: flex;
-    padding: 40px 62px 40px 36px;
+    padding: 40px 36px 40px 36px;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 440px) {
+      padding: 32px 24px;
+    }
   }
 
   // .form__start
@@ -18,6 +22,11 @@
     position: relative;
     border-radius: 24px;
     overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 305px;
+    }
   }
 
   // .form__title
@@ -32,10 +41,16 @@
 
     /* tt firs neue/headline/large-medium */
     font-family: "TT Firs Neue", sans-serif;
-    font-size: 36px;
+    font-size: clamp(1.25rem, 0.871rem + 1.38vw, 2.25rem);
     font-weight: 500;
     line-height: 110%; /* 39.6px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    @media (max-width: 440px) {
+      left: 20px;
+      top: 20px;
+      max-width: 170px;
+    }
   }
 
   // .form__end
@@ -69,6 +84,14 @@
         font-weight: 500;
         line-height: 140%; /* 22.4px */
         letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+        @media (max-width: 440px) {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 440px) {
+        padding: 14px;
       }
     }
 
@@ -76,6 +99,10 @@
       height: 58px;
       padding: var(--Space-1xl, 18px) var(--Space-xl, 16px);
       overflow: hidden;
+
+      @media (max-width: 440px) {
+        height: 74px;
+      }
     }
   }
 
@@ -85,7 +112,7 @@
     color: var(--Base-White, #fff);
 
     /* montserrat/headline/medium-medium */
-    font-size: 32px;
+    font-size: clamp(1.25rem, 0.966rem + 1.03vw, 2rem);
     font-weight: 500;
     line-height: 110%; /* 35.2px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -98,7 +125,7 @@
     margin: 12px 0 24px 0;
 
     /* montserrat/title/large-regular */
-    font-size: 20px;
+    font-size: clamp(0.875rem, 0.733rem + 0.52vw, 1.25rem);
     font-weight: 400;
     line-height: 110%; /* 22px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -122,10 +149,14 @@
 
     /* tt firs neue/title/large-medium */
     font-family: "TT Firs Neue", sans-serif;
-    font-size: 20px;
+    font-size: clamp(1rem, 0.905rem + 0.34vw, 1.25rem);
     font-weight: 500;
     line-height: 110%; /* 22px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    @media (max-width: 440px) {
+      padding: 14px 0;
+    }
 
     span {
       display: flex;
@@ -140,11 +171,17 @@
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+  width: 100%;
+
+  @media (max-width: 1080px) {
+    gap: 50px;
+    grid-template-columns: 1fr;
+  }
 }
 
 .user-action {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
 }

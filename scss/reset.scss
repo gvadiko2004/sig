@@ -119,4 +119,14 @@ a {
   max-width: 1250px;
   margin: 0 auto;
   padding: 0 20px;
+
+  @media (max-width: 440px) {
+    padding: 0 16px;
+  }
+}
+
+@mixin hidden {
+  @media (max-width: 1080px) {
+    display: none;
+  }
 }

@@ -9,11 +9,16 @@
   &__subtitle {
     color: var(--Gray-200, #b4b4b4);
 
-    font-size: 20px;
+    font-size: clamp(1rem, 0.905rem + 0.34vw, 1.25rem);
     font-weight: 400;
     line-height: 110%; /* 22px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
     margin-top: 100px;
+
+    @media (max-width: 1080px) {
+      margin-top: 70px;
+      margin-bottom: 16px;
+    }
   }
 
   // .achievements__title
@@ -22,7 +27,7 @@
     color: var(--Base-White, #fff);
 
     /* montserrat/display/medium-medium */
-    font-size: 54px;
+    font-size: clamp(2rem, 1.478rem + 1.9vw, 3.375rem);
     font-weight: 500;
     line-height: 110%; /* 59.4px */
     letter-spacing: var(--Heading-H3_Semibold-Letter-Spacing, 0);
@@ -34,6 +39,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
   // .achievements-info__item
 
@@ -48,6 +57,10 @@
     position: relative;
     border-radius: 12px;
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
+
+    @media (max-width: 440px) {
+      min-height: 232px;
+    }
 
     &::before {
       content: "";
@@ -72,7 +85,7 @@
 
   &__item-count {
     /* montserrat/display/large-medium */
-    font-size: 60px;
+    font-size: clamp(2.625rem, 2.198rem + 1.55vw, 3.75rem);
     font-weight: 500;
     line-height: 110%; /* 66px */
     letter-spacing: var(--Letter-Spacing-None, 0);
@@ -93,7 +106,7 @@
     color: var(--Base-White, #fff);
 
     /* montserrat/headline/small-medium */
-    font-size: 24px;
+    font-size: clamp(1.25rem, 1.155rem + 0.34vw, 1.5rem);
     font-weight: 500;
     line-height: 110%; /* 26.4px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -105,7 +118,7 @@
     color: var(--Gray-200, #b4b4b4);
 
     /* montserrat/title/medium-medium */
-    font-size: 16px;
+    font-size: clamp(0.875rem, 0.828rem + 0.17vw, 1rem);
 
     font-weight: 500;
     line-height: 140%; /* 22.4px */
@@ -120,6 +133,10 @@
 
   margin-top: 16px;
 
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   // .achievements-stage__item
 
   &__item {
@@ -128,6 +145,10 @@
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
 
     padding: 36px 32px;
+
+    @media (max-width: 440px) {
+      min-height: 232px;
+    }
 
     &.invers {
       display: flex;
@@ -141,6 +162,12 @@
 
       .achievements-stage__item-count {
         margin-bottom: 0 !important;
+
+        @media (max-width: 440px) {
+          img {
+            height: 100px;
+          }
+        }
       }
     }
 
@@ -167,7 +194,7 @@
 
   &__item-count {
     /* montserrat/display/large-medium */
-    font-size: 60px;
+    font-size: clamp(2.625rem, 2.198rem + 1.55vw, 3.75rem);
     font-weight: 500;
     line-height: 110%; /* 66px */
     letter-spacing: var(--Letter-Spacing-None, 0);
@@ -192,7 +219,7 @@
     color: var(--Base-White, #fff);
 
     /* montserrat/headline/small-medium */
-    font-size: 24px;
+    font-size: clamp(1.25rem, 1.155rem + 0.34vw, 1.5rem);
     font-weight: 500;
     line-height: 110%; /* 26.4px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -204,7 +231,7 @@
     color: var(--Gray-200, #b4b4b4);
 
     /* montserrat/title/medium-medium */
-    font-size: 16px;
+    font-size: clamp(0.875rem, 0.828rem + 0.17vw, 1rem);
     font-weight: 500;
     line-height: 140%; /* 22.4px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -217,11 +244,16 @@
     text-align: center;
 
     /* montserrat/display/small-medium */
-    font-size: 42px;
+    font-size: clamp(1.25rem, 0.728rem + 1.9vw, 2.625rem);
     font-weight: 500;
     line-height: 130%; /* 54.6px */
     letter-spacing: var(--Heading-H4_Semibold-Letter-Spacing, 0);
     margin-top: 144px;
+
+    @media (max-width: 440px) {
+      line-height: 110%;
+      margin-top: 68px;
+    }
 
     span {
       background: var(

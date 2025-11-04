@@ -11,6 +11,18 @@
   width: 100%;
   z-index: 10;
 
+  @media (max-width: 1080px) {
+    padding: 20px 0;
+  }
+
+  &__logo {
+    img {
+      @media (max-width: 1080px) {
+        width: 64px;
+      }
+    }
+  }
+
   // .header__inner
 
   &__inner {
@@ -33,6 +45,8 @@
     display: flex;
     align-items: center;
     gap: 32px;
+
+    @include hidden;
   }
 
   // .header__list-link
@@ -88,6 +102,8 @@
     font-weight: 500;
     line-height: 110%; /* 17.6px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    @include hidden;
   }
 
   &__border-menu {

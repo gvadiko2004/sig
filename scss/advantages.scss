@@ -7,17 +7,21 @@
   // .advantages__title
 
   &__title {
-    margin-top: 64px;
+    margin-top: clamp(1.5rem, 0.552rem + 3.45vw, 4rem);
     margin-bottom: 32px;
 
     color: var(--Base-White, #fff);
     text-align: center;
 
     /* montserrat/display/medium-medium */
-    font-size: 54px;
+    font-size: clamp(1.5rem, 0.789rem + 2.59vw, 3.375rem);
     font-weight: 500;
     line-height: 110%; /* 59.4px */
     letter-spacing: var(--Heading-H3_Semibold-Letter-Spacing, 0);
+
+    @media (max-width: 440px) {
+      margin: 48px 0 24px 0;
+    }
   }
 
   // .advantages__blocks
@@ -26,6 +30,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+
+    @media (max-width: 440px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 12px;
+    }
   }
 
   // .advantages__blocks-item
@@ -64,8 +73,8 @@
 
   &__blocks-icon {
     display: flex;
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
@@ -83,7 +92,7 @@
     margin-bottom: 8px;
     color: var(--Base-White, #fff);
 
-    font-size: 24px;
+    font-size: clamp(1.25rem, 1.155rem + 0.34vw, 1.5rem);
     font-weight: 500;
     line-height: 110%; /* 26.4px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -94,7 +103,7 @@
   &__blocks-subtitle {
     color: var(--Gray-300, #8e8e8e);
 
-    font-size: 16px;
+    font-size: clamp(0.875rem, 0.828rem + 0.17vw, 1rem);
     font-weight: 500;
     line-height: 140%; /* 22.4px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
@@ -116,6 +125,10 @@
 
     margin: 64px 0 30px 0;
 
+    @media (max-width: 440px) {
+      margin: 44px 0 30px 0;
+    }
+
     span {
       background: var(
         --1,
@@ -132,6 +145,10 @@
   &__text-subtitle {
     max-width: 1154px;
     margin: 0 auto;
+    font-size: clamp(1.25rem, 0.728rem + 1.9vw, 2.625rem);
+    @media (max-width: 440px) {
+      line-height: 110%;
+    }
   }
 
   // .advantages__list
@@ -143,6 +160,11 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @media (max-width: 440px) {
+      margin-top: 36px;
+      gap: 23px;
+    }
   }
 
   // .advantages__list-item
@@ -152,13 +174,30 @@
     align-items: center;
     gap: 30px;
 
+    @media (max-width: 440px) {
+      gap: 24px;
+    }
+
+    span {
+      img {
+        @media (max-width: 440px) {
+          max-width: 30px;
+        }
+      }
+    }
+
     p {
       color: var(--Base-White, #fff);
 
-      font-size: 24px;
+      font-size: clamp(1rem, 0.81rem + 0.69vw, 1.5rem);
       font-weight: 400;
       line-height: 110%; /* 26.4px */
       letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+      @media (max-width: 440px) {
+        gap: 24px;
+        max-width: 268px;
+      }
     }
   }
 }

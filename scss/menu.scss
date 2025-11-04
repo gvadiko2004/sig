@@ -1,0 +1,83 @@
+.menu-phone {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+
+  background: var(--Gray-700, #101010);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+
+  z-index: 3;
+
+  max-height: 0;
+  overflow: hidden;
+
+  transition: 1s ease;
+
+  &.active {
+    max-height: 700px;
+  }
+}
+
+.menu-phone {
+  margin: 20px 0 0 0;
+  // .menu-phone__inner
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+  }
+
+  // .menu-phone__list
+
+  &__list {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  // .menu-phone__list-item
+
+  &__list-item {
+  }
+
+  // .menu-phone__list-link
+
+  &__list-link {
+    color: var(--Gray-300, #8e8e8e);
+
+    /* montserrat/title/large-medium */
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 110%; /* 22px */
+    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .footer__end {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header__btn {
+    display: inline-flex;
+    max-width: 138px;
+    margin: 0 auto;
+  }
+}
