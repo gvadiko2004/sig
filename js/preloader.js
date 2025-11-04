@@ -16,7 +16,7 @@ const progressSpan = document.querySelector(".preloader__circle-item span");
 const preloadItem = document.querySelector(".preloader__circle-item");
 
 let startTime = Date.now();
-let duration = 2200; // 5 сек – длительность анимации процентов
+let duration = 4200; // 5 сек – длительность анимации процентов
 
 function updateProgress() {
   let elapsed = Date.now() - startTime;
