@@ -1938,14 +1938,17 @@ a {
   pointer-events: all;
   visibility: visible;
   overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
 }
 .preloader * {
   -webkit-transition: none;
   transition: none;
 }
+.preloader.load {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .preloader__circle {
   /* Здесь вы можете добавить стили для общего круга, если нужно */
 }
@@ -1970,6 +1973,12 @@ a {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); /* Используем translate, чтобы точно центрировать */
 }
+@media (max-width: 768px) {
+  .preloader__circle-item {
+    width: 150px;
+    height: 150px;
+  }
+}
 
 .preloader__circle-item span {
   position: relative;
@@ -1982,6 +1991,11 @@ a {
   -webkit-background-clip: text;
           background-clip: text;
   color: #fff;
+}
+@media (max-width: 440px) {
+  .preloader__circle-item span {
+    font-size: 28px;
+  }
 }
 
 .preload-item {
@@ -2009,6 +2023,12 @@ a {
       -ms-flex-pack: center;
           justify-content: center; /* Выравниваем по горизонтали */
 }
+@media (max-width: 440px) {
+  .item-2 {
+    width: 256px;
+    height: 256px;
+  }
+}
 
 .item-2 .icon {
   position: absolute;
@@ -2019,8 +2039,8 @@ a {
 .item-3 {
   border-radius: 320px;
   border: 1px solid var(--Pink-100, rgba(228, 153, 255, 0.1294117647));
-  width: 532px;
-  height: 532px;
+  width: 432px;
+  height: 432px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   display: -webkit-box;
@@ -2090,6 +2110,7 @@ a {
           filter: blur(250px);
   position: absolute;
   left: -20vw;
+  pointer-events: none;
 }
 
 .filter-sep-2 {
@@ -2103,6 +2124,7 @@ a {
           filter: blur(250px);
   position: absolute;
   right: -20vw;
+  pointer-events: none;
 }
 
 .footer {

@@ -23,14 +23,10 @@
 
   overflow: hidden;
 
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-
   &.load {
-    // opacity: 0;
-    // pointer-events: none;
-    // visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 }
 
@@ -54,6 +50,11 @@
     -50%,
     -50%
   ); /* Используем translate, чтобы точно центрировать */
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .preloader__circle-item span {
@@ -68,6 +69,10 @@
   letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
   background-clip: text;
   color: #fff;
+
+  @media (max-width: 440px) {
+    font-size: 28px;
+  }
 }
 
 .preload-item {
@@ -87,6 +92,11 @@
   display: flex;
   align-items: center; /* Выравниваем по вертикали */
   justify-content: center; /* Выравниваем по горизонтали */
+
+  @media (max-width: 440px) {
+    width: 256px;
+    height: 256px;
+  }
 }
 
 .item-2 .icon {
@@ -98,8 +108,8 @@
 .item-3 {
   border-radius: 320px;
   border: 1px solid var(--Pink-100, #e499ff21);
-  width: 532px;
-  height: 532px;
+  width: 432px;
+  height: 432px;
   flex-shrink: 0;
 
   display: flex;
@@ -165,6 +175,8 @@
 
   position: absolute;
   left: -20vw;
+
+  pointer-events: none;
 }
 
 .filter-sep-2 {
@@ -178,4 +190,5 @@
 
   position: absolute;
   right: -20vw;
+  pointer-events: none;
 }
