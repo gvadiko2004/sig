@@ -268,7 +268,7 @@ a {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 70px;
-  padding: 60px 0 0 0;
+  padding: 30px 0 0 0;
 }
 .menu-phone__list {
   display: -webkit-box;

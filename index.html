@@ -244,7 +244,18 @@
             </div>
           </div>
 
-          <video src="./hero-video.mp4" muted autoplay></video>
+          <video
+            class="hero-video"
+            muted
+            autoplay
+            playsinline
+            loop
+            preload="metadata"
+            poster="./hero-poster.jpg"
+          >
+            <source src="./hero-video.webm" type="video/webm" />
+            <source src="./hero-video.mp4" type="video/mp4" />
+          </video>
         </section>
 
         <section class="service">
