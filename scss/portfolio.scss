@@ -69,6 +69,9 @@
     max-width: 472px;
     width: 100%;
 
+    @include inner-shadow-premium();
+
+
     @media (max-width: 768px) {
       max-width: 100%;
       padding: 26px 14px;

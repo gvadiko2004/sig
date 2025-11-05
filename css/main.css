@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: "Inter";
   src: url("../fonts/Inter18pt-Medium.woff2") format("woff2");
@@ -123,6 +122,38 @@ a {
 @media (max-width: 440px) {
   .container {
     padding: 0 16px;
+  }
+}
+
+.cirlcle-filter-rose {
+  width: 251px;
+  height: 256px;
+  background: #e499ff;
+  -webkit-filter: blur(250px);
+          filter: blur(250px);
+  position: absolute;
+  pointer-events: none;
+}
+@media (max-width: 440px) {
+  .cirlcle-filter-rose {
+    width: 164px;
+    height: 164px;
+  }
+}
+
+.cirlcle-filter-purple {
+  width: 251px;
+  height: 256px;
+  background: #6067ee;
+  -webkit-filter: blur(250px);
+          filter: blur(250px);
+  position: absolute;
+  pointer-events: none;
+}
+@media (max-width: 440px) {
+  .cirlcle-filter-purple {
+    width: 164px;
+    height: 164px;
   }
 }
 
@@ -326,6 +357,17 @@ a {
   display: inline-flex;
   max-width: 138px;
   margin: 0 auto;
+}
+
+.menu-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 40px;
 }
 
 .hero {
@@ -578,6 +620,9 @@ a {
   letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
 }
 
+.service {
+  position: relative;
+}
 .service__title {
   text-align: center;
   font-size: clamp(1.5rem, 0.789rem + 2.59vw, 3.375rem);
@@ -658,6 +703,8 @@ a {
   gap: var(--Space-2xs, 2px);
   border-radius: 12px;
   background: rgba(23, 23, 23, 0.2);
+  -webkit-box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+          box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 @media (max-width: 440px) {
   .service-blocks__item {
@@ -808,6 +855,18 @@ a {
           justify-content: center;
 }
 
+.service .cirlcle-filter-rose {
+  right: -10vw;
+  bottom: 0;
+}
+
+.achievements {
+  position: relative;
+}
+.achievements .cirlcle-filter-purple {
+  left: -10vw;
+  bottom: 0;
+}
 .achievements__subtitle {
   color: var(--Gray-200, #b4b4b4);
   font-size: clamp(1rem, 0.905rem + 0.34vw, 1.25rem);
@@ -865,6 +924,8 @@ a {
   position: relative;
   border-radius: 12px;
   background: rgba(23, 23, 23, 0.2);
+  -webkit-box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+          box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 @media (max-width: 440px) {
   .achievements-info__item {
@@ -1081,6 +1142,8 @@ a {
   border-radius: 12px;
   background: var(--luiqid-glass, rgba(23, 23, 23, 0.2));
   background-blend-mode: screen;
+  -webkit-box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+          box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 .advantages__blocks-item::before {
   content: "";
@@ -1213,6 +1276,11 @@ a {
   }
 }
 
+.advantages .cirlcle-filter-purple {
+  right: -10vw;
+  bottom: 0px;
+}
+
 .portfolio {
   position: relative;
 }
@@ -1289,6 +1357,8 @@ a {
   background: rgba(23, 23, 23, 0.2);
   max-width: 472px;
   width: 100%;
+  -webkit-box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+          box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 @media (max-width: 768px) {
   .portfolio__start {
@@ -1540,6 +1610,19 @@ a {
   }
 }
 
+.about {
+  position: relative;
+}
+.about .cirlcle-filter-rose {
+  left: -10vw;
+  top: 0;
+}
+@media (max-width: 1080px) {
+  .about .cirlcle-filter-rose {
+    top: auto;
+    bottom: 50%;
+  }
+}
 .about__title {
   color: var(--Base-White, #fff);
   /* montserrat/display/medium-medium */
@@ -1618,6 +1701,8 @@ a {
   z-index: 1;
   border-radius: 12px;
   background: rgba(23, 23, 23, 0.2);
+  -webkit-box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+          box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 @media (max-width: 1080px) {
   .about-blocks__item {
@@ -1694,6 +1779,17 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
+.form {
+  position: relative;
+}
+.form .cirlcle-filter-purple {
+  left: -10vw;
+  top: 0;
+}
+.form .cirlcle-filter-rose {
+  right: -10vw;
+  bottom: 0;
+}
 .form__inner {
   border-radius: 24px;
   background: var(--luiqid-glass, rgba(23, 23, 23, 0.2));
@@ -1708,6 +1804,8 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+          box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 @media (max-width: 440px) {
   .form__inner {
@@ -1931,236 +2029,6 @@ a {
           flex-direction: column;
   gap: 16px;
   margin-bottom: 24px;
-}
-
-.preloader {
-  position: fixed;
-  z-index: 998;
-  width: 100%;
-  height: 100vh;
-  background: var(--Gray-700, #101010);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; /* Вертикальное выравнивание по центру */
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; /* Горизонтальное выравнивание по центру */
-  opacity: 1;
-  pointer-events: all;
-  visibility: visible;
-  overflow: hidden;
-}
-.preloader * {
-  -webkit-transition: none;
-  transition: none;
-}
-.preloader.load {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-.preloader__circle {
-  /* Здесь вы можете добавить стили для общего круга, если нужно */
-}
-
-.preloader__circle-item {
-  width: 191px;
-  height: 192px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; /* Вертикальное выравнивание по центру */
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; /* Горизонтальное выравнивание по центру */
-  position: absolute;
-  left: 50%; /* Смещаем по горизонтали на 50% */
-  top: 50%; /* Смещаем по вертикали на 50% */
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%); /* Используем translate, чтобы точно центрировать */
-}
-@media (max-width: 768px) {
-  .preloader__circle-item {
-    width: 150px;
-    height: 150px;
-  }
-}
-
-.preloader__circle-item span {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 110%;
-  letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
-  -webkit-background-clip: text;
-          background-clip: text;
-  color: #fff;
-}
-@media (max-width: 440px) {
-  .preloader__circle-item span {
-    font-size: 28px;
-  }
-}
-
-.preload-item {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%); /* Центрируем элемент */
-}
-
-.item-2 {
-  border-radius: 320px;
-  border: 1px solid var(--Pink-100, rgba(228, 153, 255, 0.1294117647));
-  width: 320px;
-  height: 320px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; /* Выравниваем по вертикали */
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; /* Выравниваем по горизонтали */
-}
-@media (max-width: 440px) {
-  .item-2 {
-    width: 256px;
-    height: 256px;
-  }
-}
-
-.item-2 .icon {
-  position: absolute;
-  top: -34px;
-  z-index: 3;
-}
-
-.item-3 {
-  border-radius: 320px;
-  border: 1px solid var(--Pink-100, rgba(228, 153, 255, 0.1294117647));
-  width: 532px;
-  height: 532px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; /* Выравниваем по вертикали */
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; /* Выравниваем по горизонтали */
-}
-@media (max-width: 440px) {
-  .item-3 {
-    width: 432px;
-    height: 432px;
-  }
-}
-
-.circle-overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; /* Центрируем вложенные элементы */
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; /* Центрируем по вертикали */
-  border-radius: 50%;
-  background: var(--Gray-200, #b4b4b4);
-  pointer-events: none;
-}
-.circle-overlay::before {
-  position: absolute;
-  content: "ssss";
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(#e499ff), to(#464fec));
-  background: linear-gradient(180deg, #e499ff 0%, #464fec 100%);
-  -webkit-filter: blur(22.5px);
-          filter: blur(22.5px);
-  border-radius: 50%;
-  left: 14px;
-  top: 14px;
-}
-
-.circle-overlay .item svg {
-  width: 190px;
-  height: 190px;
-}
-.circle-overlay .item:nth-child(1) {
-  z-index: 3;
-}
-
-.filter-sep-1 {
-  width: 259px;
-  height: 264px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--Pink-100, #e499ff);
-  -webkit-filter: blur(250px);
-          filter: blur(250px);
-  position: absolute;
-  left: -20vw;
-  pointer-events: none;
-}
-@media (max-width: 440px) {
-  .filter-sep-1 {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-.filter-sep-2 {
-  width: 259px;
-  height: 264px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--Blue-100, #6067ee);
-  -webkit-filter: blur(250px);
-          filter: blur(250px);
-  position: absolute;
-  right: -20vw;
-  pointer-events: none;
-}
-@media (max-width: 440px) {
-  .filter-sep-2 {
-    width: 120px;
-    height: 120px;
-  }
 }
 
 .footer {

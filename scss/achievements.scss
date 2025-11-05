@@ -1,4 +1,11 @@
 .achievements {
+  position: relative;
+
+  .cirlcle-filter-purple {
+  left: -10vw;
+  bottom: 0;
+}
+
   // .achievements__inner
 
   &__inner {
@@ -57,6 +64,8 @@
     position: relative;
     border-radius: 12px;
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
+
+    @include inner-shadow-premium();
 
     @media (max-width: 440px) {
       min-height: 232px;
@@ -266,3 +275,5 @@
     }
   }
 }
+
+

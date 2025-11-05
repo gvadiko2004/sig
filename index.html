@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <!-- REQUIRED META -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ✅ SEO TITLE -->
     <title>
@@ -14,22 +14,22 @@
     <meta
       name="description"
       content="SIG is an investment fund specializing in asset management, portfolio growth and personalized investment strategies. $100M+ under management. 500+ satisfied investors."
-    />
+    >
 
     <!-- ✅ OPTIONAL KEYWORDS -->
     <meta
       name="keywords"
       content="investment fund, asset management, portfolio management, investment strategies, consulting, SIG investments"
-    />
+    >
 
     <!-- ✅ CANONICAL URL (замени на боевой URL) -->
-    <link rel="canonical" href="https://sig.com/" />
+    <link rel="canonical" href="https://sig.com/" >
 
     <!-- ✅ FAVICON -->
-    <link rel="shortcut icon" href="./images/fav.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="./images/fav.svg" type="image/x-icon" >
 
     <!-- ✅ OPEN GRAPH -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" >
     <meta
       property="og:title"
       content="Invest with SIG — Professional asset management"
@@ -38,25 +38,25 @@
       property="og:description"
       content="SIG manages more than $100M in assets. Personalized investment strategies. 500+ satisfied investors."
     />
-    <meta property="og:url" content="https://sig.com/" />
-    <meta property="og:image" content="https://sig.com/og-image.jpg" />
-    <meta property="og:site_name" content="SIG Investment Group" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://sig.com/" >
+    <meta property="og:image" content="https://sig.com/og-image.jpg" >
+    <meta property="og:site_name" content="SIG Investment Group" >
+    <meta property="og:locale" content="en_US" >
 
     <!-- ✅ TWITTER CARD -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
       content="SIG — Investment strategies & asset management"
-    />
+    >
     <meta
       name="twitter:description"
       content="Invest with confidence. Portfolio management with minimized risks."
-    />
-    <meta name="twitter:image" content="https://sig.com/og-image.jpg" />
+    >
+    <meta name="twitter:image" content="https://sig.com/og-image.jpg" >
 
     <!-- ✅ ROBOTS INDEXING -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow" >
 
     <!-- ✅ GOOGLE ANALYTICS (замени G-XXXXXXXXXX на ID клиента) -->
     <script
@@ -73,8 +73,10 @@
     </script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/animation.css" />
+
+<link rel="stylesheet" href="./css/preloader.css">
+<link rel="preload" href="/css/main.css" as="style" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/main.css"></noscript>
   </head>
 
   <body>
@@ -84,7 +86,7 @@
           <div class="header__inner">
             <div class="header__left">
               <a href="#!" class="header__logo">
-                <img src="./images/logo.svg" alt="" />
+                <img src="./images/logo.svg" alt="">
               </a>
             </div>
 
@@ -142,7 +144,8 @@
 
       <div class="menu-phone">
         <div class="menu-phone__inner">
-          <ul class="menu-phone__list list-reset">
+          <div class="menu-container">
+            <ul class="menu-phone__list list-reset">
             <li class="menu-phone__list-item">
               <a href="./index.html" class="menu-phone__list-link"> Home</a>
             </li>
@@ -162,9 +165,10 @@
             <li class="menu-phone__list-item">
               <a href="#contacts" class="menu-phone__list-link"> Contacts</a>
             </li>
-
-            <a href="#contacts" class="btn-reset header__btn">Consultation</a>
           </ul>
+
+          <a href="#contacts" class="btn-reset header__btn">Consultation</a>
+          </div>
 
           <div class="footer__end">
             <div class="footer-contact">
@@ -741,6 +745,8 @@
               </div>
             </div>
           </div>
+
+          <div class="cirlcle-filter-rose"></div>
         </section>
 
         <section class="achievements">
@@ -804,7 +810,7 @@
 
                   <div class="achievements-stage__item invers">
                     <span class="achievements-stage__item-count">
-                      <img src="./images/stage.png" alt="" />
+                      <img src="./images/stage.png" alt="">
                     </span>
 
                     <div class="content">
@@ -829,6 +835,8 @@
               </div>
             </div>
           </div>
+
+          <div class="cirlcle-filter-purple"></div>
         </section>
 
         <section class="advantages">
@@ -957,7 +965,7 @@
               <ul class="advantages__list list-reset">
                 <li class="advantages__list-item">
                   <span>
-                    <img src="./images/mark.svg" alt="" />
+                    <img src="./images/mark.svg" alt="">
                   </span>
 
                   <p>Expert team with 15+ years of experience</p>
@@ -965,7 +973,7 @@
 
                 <li class="advantages__list-item">
                   <span>
-                    <img src="./images/mark.svg" alt="" />
+                    <img src="./images/mark.svg" alt="">
                   </span>
 
                   <p>Individual approach to each client</p>
@@ -973,7 +981,7 @@
 
                 <li class="advantages__list-item">
                   <span>
-                    <img src="./images/mark.svg" alt="" />
+                    <img src="./images/mark.svg" alt="">
                   </span>
 
                   <p>Advanced analytics and research</p>
@@ -981,7 +989,7 @@
 
                 <li class="advantages__list-item">
                   <span>
-                    <img src="./images/mark.svg" alt="" />
+                    <img src="./images/mark.svg" alt="">
                   </span>
 
                   <p>Transparency and regular reporting</p>
@@ -989,7 +997,7 @@
 
                 <li class="advantages__list-item">
                   <span>
-                    <img src="./images/mark.svg" alt="" />
+                    <img src="./images/mark.svg" alt="">
                   </span>
 
                   <p>Diversified investment strategies</p>
@@ -997,7 +1005,7 @@
 
                 <li class="advantages__list-item">
                   <span>
-                    <img src="./images/mark.svg" alt="" />
+                    <img src="./images/mark.svg" alt="">
                   </span>
 
                   <p>Risk minimization through hedging</p>
@@ -1005,6 +1013,8 @@
               </ul>
             </div>
           </div>
+
+          <div class="cirlcle-filter-purple"></div>
         </section>
 
         <section class="portfolio" id="portfolio">
@@ -1253,7 +1263,7 @@
                 </div>
 
                 <div class="portfolio__end">
-                  <img src="./images/video.png" alt="" />
+                  <img src="./images/video.png" alt="">
                 </div>
               </div>
             </div>
@@ -1612,6 +1622,8 @@
               </p>
             </div>
           </div>
+
+          <div class="cirlcle-filter-rose"></div>
         </section>
 
         <section class="form" id="contacts">
@@ -1623,11 +1635,11 @@
                     Ready to start your investment journey?
                   </h4>
 
-                  <img src="./images/form.png" alt="" />
+                  <img src="./images/form.png" alt="">
                 </div>
 
                 <div class="form__end">
-                  <form action="">
+                  <form action="./mail.php">
                     <h4 class="form__muted">Fill out the form</h4>
 
                     <p class="form__subtitle">
@@ -1639,17 +1651,17 @@
                         class="input-reset"
                         type="text"
                         placeholder="Your name"
-                      />
+                      >
                       <input
                         class="input-reset"
                         type="email"
                         placeholder="your@email.com"
-                      />
+                      >
                       <input
                         class="input-reset"
                         type="number"
                         placeholder="+380 XX XXX XX XX"
-                      />
+                      >
                       <textarea
                         class="input-reset"
                         type="number"
@@ -1682,6 +1694,9 @@
               </div>
             </div>
           </div>
+
+          <div class="cirlcle-filter-purple"></div>
+          <div class="cirlcle-filter-rose"></div>
         </section>
       </main>
 
@@ -1691,7 +1706,7 @@
             <div class="top">
               <div class="footer__start">
                 <a href="#!" class="footer__logo">
-                  <img src="./images/logo.svg" alt="" />
+                  <img src="./images/logo.svg" alt="">
                 </a>
 
                 <div class="footer-list">
@@ -1948,9 +1963,9 @@
       <div class="filter-sep-2"></div>
     </div>
 
-    <script src="./js/main.js"></script>
-    <script src="./js/preloader.js"></script>
-    <script src="./js/menu.js"></script>
+    <script defer src="./js/main.js"></script>
+    <script defer src="./js/preloader.js"></script>
+    <script defer src="./js/menu.js"></script>
 
     <script src="./js/animation.js"></script>
   </body>

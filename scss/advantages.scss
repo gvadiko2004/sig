@@ -50,6 +50,8 @@
     background: var(--luiqid-glass, rgba(23, 23, 23, 0.2));
     background-blend-mode: screen;
 
+    @include inner-shadow-premium();
+
     &::before {
       content: "";
       position: absolute;
@@ -202,4 +204,10 @@
   }
 }
 .list-reset {
+}
+
+
+.advantages .cirlcle-filter-purple {
+  right: -10vw;
+  bottom: 0px;
 }

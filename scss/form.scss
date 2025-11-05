@@ -1,4 +1,15 @@
 .form {
+  position: relative;
+
+  .cirlcle-filter-purple {
+    left: -10vw;
+    top: 0;
+  }
+
+  .cirlcle-filter-rose {
+    right: -10vw;
+    bottom: 0;
+  }
   // .form__inner
 
   &__inner {
@@ -10,6 +21,7 @@
     padding: 40px 36px 40px 36px;
     justify-content: space-between;
     align-items: center;
+    @include inner-shadow-premium();
 
     @media (max-width: 440px) {
       padding: 32px 24px;

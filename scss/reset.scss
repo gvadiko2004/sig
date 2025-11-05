@@ -47,20 +47,18 @@
 }
 
 @font-face {
-    font-family: 'TT Firs Neue';
-    src: url('../fonts/TTFirsNeue-Regular.woff2') format('woff2');
+  font-family: "TT Firs Neue";
+  src: url("../fonts/TTFirsNeue-Regular.woff2") format("woff2");
 
-    font-display: swap;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'TT Firs Neue';
-    src: url('../fonts/TTFirsNeue-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-display: swap;
+  font-family: "TT Firs Neue";
+  src: url("../fonts/TTFirsNeue-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
 }
-
-
 
 html {
   scroll-behavior: smooth;
@@ -144,5 +142,43 @@ a {
 @mixin hidden {
   @media (max-width: 1080px) {
     display: none;
+  }
+}
+
+@mixin inner-shadow-premium(
+  $blur: 40px,
+  $shadowColor: rgba(0, 0, 0, 0.55),
+  $stroke: rgba(255, 255, 255, 0.06)
+) {
+  box-shadow: inset 0 0 $blur $shadowColor, inset 0 0 0 1px $stroke;
+}
+
+.cirlcle-filter-rose {
+  width: 251px;
+  height: 256px;
+
+  background: #e499ff;
+  filter: blur(250px);
+  position: absolute;
+  pointer-events: none;
+
+  @media (max-width: 440px) {
+    width: 164px;
+    height: 164px;
+  }
+}
+
+.cirlcle-filter-purple {
+  width: 251px;
+  height: 256px;
+
+  background: #6067ee;
+  filter: blur(250px);
+  position: absolute;
+  pointer-events: none;
+
+  @media (max-width: 440px) {
+    width: 164px;
+    height: 164px;
   }
 }
