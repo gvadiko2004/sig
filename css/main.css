@@ -35,6 +35,17 @@
   font-weight: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../fonts/TTFirsNeue-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../fonts/TTFirsNeue-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -121,7 +132,7 @@ a {
   background-blend-mode: screen;
   backdrop-filter: blur(16.5px);
   padding: 18px 0;
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   width: 100%;
@@ -1499,7 +1510,6 @@ a {
 }
 .portfolio-blocks__item-body .line {
   height: 100%;
-  width: 20%;
   border-radius: 100px;
   background-color: #fff;
 }
@@ -1714,6 +1724,7 @@ a {
   position: absolute;
   top: 40px;
   left: 40px;
+  z-index: 3;
   /* tt firs neue/headline/large-medium */
   font-family: "TT Firs Neue", sans-serif;
   font-size: clamp(1.25rem, 0.871rem + 1.38vw, 2.25rem);
@@ -2039,8 +2050,8 @@ a {
 .item-3 {
   border-radius: 320px;
   border: 1px solid var(--Pink-100, rgba(228, 153, 255, 0.1294117647));
-  width: 432px;
-  height: 432px;
+  width: 532px;
+  height: 532px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   display: -webkit-box;
@@ -2052,6 +2063,12 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; /* Выравниваем по горизонтали */
+}
+@media (max-width: 440px) {
+  .item-3 {
+    width: 432px;
+    height: 432px;
+  }
 }
 
 .circle-overlay {
@@ -2112,6 +2129,12 @@ a {
   left: -20vw;
   pointer-events: none;
 }
+@media (max-width: 440px) {
+  .filter-sep-1 {
+    width: 120px;
+    height: 120px;
+  }
+}
 
 .filter-sep-2 {
   width: 259px;
@@ -2125,6 +2148,12 @@ a {
   position: absolute;
   right: -20vw;
   pointer-events: none;
+}
+@media (max-width: 440px) {
+  .filter-sep-2 {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .footer {

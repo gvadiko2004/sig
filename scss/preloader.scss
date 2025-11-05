@@ -108,13 +108,18 @@
 .item-3 {
   border-radius: 320px;
   border: 1px solid var(--Pink-100, #e499ff21);
-  width: 432px;
-  height: 432px;
+  width: 532px;
+  height: 532px;
   flex-shrink: 0;
 
   display: flex;
   align-items: center; /* Выравниваем по вертикали */
   justify-content: center; /* Выравниваем по горизонтали */
+
+  @media (max-width: 440px) {
+    width: 432px;
+    height: 432px;
+  }
 }
 
 .circle-overlay {
@@ -177,6 +182,11 @@
   left: -20vw;
 
   pointer-events: none;
+
+  @media (max-width: 440px) {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .filter-sep-2 {
@@ -191,4 +201,9 @@
   position: absolute;
   right: -20vw;
   pointer-events: none;
+
+  @media (max-width: 440px) {
+    width: 120px;
+    height: 120px;
+  }
 }

@@ -74,6 +74,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/animation.css" />
   </head>
 
   <body>
@@ -90,27 +91,27 @@
             <div class="header__right">
               <ul class="header__list list-reset">
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">Home</a>
+                  <a href="index.html" class="header__list-link">Home</a>
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">Services</a>
+                  <a href="#services" class="header__list-link">Services</a>
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">About</a>
+                  <a href="#about" class="header__list-link">About</a>
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">Portfolio</a>
+                  <a href="#portfolio" class="header__list-link">Portfolio</a>
                 </li>
 
                 <li class="header__list-item">
-                  <a href="#!" class="header__list-link">Contacts</a>
+                  <a href="#contacts" class="header__list-link">Contacts</a>
                 </li>
               </ul>
 
-              <button class="btn-reset header__btn">Consultation</button>
+              <a href="#contacts" class="btn-reset header__btn">Consultation</a>
 
               <button class="btn-reset header__border-menu">
                 <svg
@@ -143,26 +144,26 @@
         <div class="menu-phone__inner">
           <ul class="menu-phone__list list-reset">
             <li class="menu-phone__list-item">
-              <a href="#!" class="menu-phone__list-link"> Home</a>
+              <a href="./index.html" class="menu-phone__list-link"> Home</a>
             </li>
 
             <li class="menu-phone__list-item">
-              <a href="#!" class="menu-phone__list-link"> Services</a>
+              <a href="#services" class="menu-phone__list-link"> Services</a>
             </li>
 
             <li class="menu-phone__list-item">
-              <a href="#!" class="menu-phone__list-link"> About</a>
+              <a href="#about" class="menu-phone__list-link"> About</a>
             </li>
 
             <li class="menu-phone__list-item">
-              <a href="#!" class="menu-phone__list-link"> Portfolio</a>
+              <a href="#portfolio" class="menu-phone__list-link"> Portfolio</a>
             </li>
 
             <li class="menu-phone__list-item">
-              <a href="#!" class="menu-phone__list-link"> Contacts</a>
+              <a href="#contacts" class="menu-phone__list-link"> Contacts</a>
             </li>
 
-            <button class="btn-reset header__btn">Consultation</button>
+            <a href="#contacts" class="btn-reset header__btn">Consultation</a>
           </ul>
 
           <div class="footer__end">
@@ -325,7 +326,7 @@
           </video>
         </section>
 
-        <section class="service">
+        <section class="service" id="services">
           <div class="container">
             <div class="service__inner">
               <h2 class="service__title">Our services</h2>
@@ -1006,7 +1007,7 @@
           </div>
         </section>
 
-        <section class="portfolio">
+        <section class="portfolio" id="portfolio">
           <div class="container">
             <div class="portfolio__inner">
               <h2 class="portfolio__title">Our portfolio</h2>
@@ -1259,7 +1260,7 @@
           </div>
         </section>
 
-        <section class="about">
+        <section class="about" id="about">
           <div class="container">
             <div class="about__inner">
               <h2 class="about__title">About the sectors</h2>
@@ -1613,7 +1614,7 @@
           </div>
         </section>
 
-        <section class="form">
+        <section class="form" id="contacts">
           <div class="container">
             <div class="form__inner">
               <div class="form-content">
@@ -1863,7 +1864,7 @@
       </footer>
     </div>
 
-    <div class="preloader">
+    <!-- <div class="preloader">
       <div class="preloader__circle">
         <div class="preloader__circle-item preload-item">
           <span>100%</span>
@@ -1945,10 +1946,11 @@
 
       <div class="filter-sep-1"></div>
       <div class="filter-sep-2"></div>
-    </div>
+    </div> -->
 
     <script src="./js/main.js"></script>
-    <script src="./js/preloader.js"></script>
+    <!-- <script src="./js/preloader.js"></script> -->
     <script src="./js/menu.js"></script>
+    <script src="./js/animation.js"></script>
   </body>
 </html>

@@ -39,6 +39,8 @@
     top: 40px;
     left: 40px;
 
+    z-index: 3;
+
     /* tt firs neue/headline/large-medium */
     font-family: "TT Firs Neue", sans-serif;
     font-size: clamp(1.25rem, 0.871rem + 1.38vw, 2.25rem);
