@@ -3,11 +3,9 @@
 ***********************************/
 function runHeaderAnimation() {
   const header = document.querySelector(".header");
-
-  // ЖДЕМ ПРЕЛОАДЕР
   const preloader = document.querySelector(".preloader");
-  if (preloader && !preloader.classList.contains("load")) return;
 
+  if (preloader && !preloader.classList.contains("load")) return;
   if (!header) return;
 
   header.style.transition = "opacity .6s ease, transform .6s ease";
@@ -24,18 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   header.style.transform = "translateY(-100px)";
 });
 
-// НЕ ЗАПУСКАЕМ НА load, ПОКА НЕТ preloader.load
-window.addEventListener("load", () => {
-  const interval = setInterval(() => {
-    const preloader = document.querySelector(".preloader");
-    if (preloader && preloader.classList.contains("load")) {
-      clearInterval(interval); // стоп polling
-      runHeaderAnimation();
-    }
-  }, 50);
-});
-
-// СЛЕДИМ ЗА PRELOADER LOAD (основной триггер)
+// ожидание пока preloader.add("load")
 const preloaderEl = document.querySelector(".preloader");
 if (preloaderEl) {
   const observer = new MutationObserver(() => {
@@ -48,22 +35,21 @@ if (preloaderEl) {
 }
 
 /***********************************
-  HELPERS
+ HELPERS
 ***********************************/
 function triggerPoint(section) {
   const rect = section.getBoundingClientRect();
   const isMobile = window.innerWidth <= 440;
 
-  if (isMobile) return rect.top <= window.innerHeight * 0.95; // видно в зоне
-  return rect.top <= window.innerHeight * 0.3; // раньше на 20%
+  if (isMobile) return rect.top <= window.innerHeight * 0.95;
+  return rect.top <= window.innerHeight * 0.3;
 }
 
 function animateCounter(el) {
   if (!el) return;
   const original = el.textContent.trim();
   const numeric = parseFloat(original.replace(/[^0-9.]/g, ""));
-
-  if (isNaN(numeric)) return; // <-- Фикс NaN
+  if (isNaN(numeric)) return;
 
   const suffix = original.replace(/[0-9.]/g, "");
   const duration = 1200;
@@ -78,7 +64,7 @@ function animateCounter(el) {
 }
 
 /***********************************
- HERO
+ HERO (запуск строго после preloader.load)
 ***********************************/
 function runHeroAnimation() {
   const hero = document.querySelector(".hero");
@@ -99,22 +85,31 @@ function runHeroAnimation() {
   hero.style.opacity = "1";
   hero.style.transform = "translateY(0)";
 
-  setTimeout(() => {
-    muted.style.opacity = "1";
-    muted.style.transform = "translateY(0)";
-  }, 150);
-  setTimeout(() => {
-    title.style.opacity = "1";
-    title.style.transform = "translateY(0)";
-  }, 300);
-  setTimeout(() => {
-    subtitle.style.opacity = "1";
-    subtitle.style.transform = "translateY(0)";
-  }, 450);
-  setTimeout(() => {
-    actions.style.opacity = "1";
-    actions.style.transform = "translateY(0)";
-  }, 600);
+  setTimeout(
+    () => (
+      (muted.style.opacity = "1"), (muted.style.transform = "translateY(0)")
+    ),
+    150
+  );
+  setTimeout(
+    () => (
+      (title.style.opacity = "1"), (title.style.transform = "translateY(0)")
+    ),
+    300
+  );
+  setTimeout(
+    () => (
+      (subtitle.style.opacity = "1"),
+      (subtitle.style.transform = "translateY(0)")
+    ),
+    450
+  );
+  setTimeout(
+    () => (
+      (actions.style.opacity = "1"), (actions.style.transform = "translateY(0)")
+    ),
+    600
+  );
 
   infoItems.forEach((item, index) => {
     setTimeout(() => {
@@ -144,24 +139,21 @@ document.addEventListener("DOMContentLoaded", () => {
   subtitle.style.transform = "translateY(15px)";
   actions.style.opacity = "0";
   actions.style.transform = "translateY(15px)";
-  infoItems.forEach((item) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(15px)";
-  });
+  infoItems.forEach(
+    (i) => ((i.style.opacity = "0"), (i.style.transform = "translateY(15px)"))
+  );
 
   const observer = new MutationObserver(() => {
     if (preloader.classList.contains("load")) {
-      setTimeout(runHeroAnimation, 500); 
+      setTimeout(runHeroAnimation, 500); // строго через 1 сек после .load
       observer.disconnect();
     }
   });
-
   observer.observe(preloader, { attributes: true });
 });
 
-
 /***********************************
- SERVICE
+ SERVICE  (mobile animates items on visibility)
 ***********************************/
 function animateServiceSection() {
   const section = document.querySelector(".service");
@@ -175,42 +167,64 @@ function animateServiceSection() {
   title.style.transform = "translateY(15px)";
   subtitle.style.opacity = "0";
   subtitle.style.transform = "translateY(15px)";
-  blocks.forEach((block) => {
-    block.style.opacity = "0";
-    block.style.transform = "translateY(20px)";
-  });
+  blocks.forEach(
+    (item) => (
+      (item.style.opacity = "0"), (item.style.transform = "translateY(20px)")
+    )
+  );
 
   function onScroll() {
-    if (triggerPoint(section)) {
-      section.style.transition =
-        title.style.transition =
-        subtitle.style.transition =
-          "opacity .6s ease, transform .6s ease";
-      blocks.forEach(
-        (block) =>
-          (block.style.transition = "opacity .6s ease, transform .6s ease")
+    if (!triggerPoint(section)) return;
+
+    section.style.transition =
+      title.style.transition =
+      subtitle.style.transition =
+        "opacity .6s ease, transform .6s ease";
+
+    section.style.opacity = "1";
+    section.style.transform = "translateY(0)";
+    setTimeout(
+      () => (
+        (title.style.opacity = "1"), (title.style.transform = "translateY(0)")
+      ),
+      150
+    );
+    setTimeout(
+      () => (
+        (subtitle.style.opacity = "1"),
+        (subtitle.style.transform = "translateY(0)")
+      ),
+      350
+    );
+
+    if (window.innerWidth <= 440) {
+      const blockObs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.style.transition =
+              "opacity .6s ease, transform .6s ease";
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            blockObs.unobserve(entry.target);
+          }),
+        { threshold: 0.3 }
       );
-
-      section.style.opacity = "1";
-      section.style.transform = "translateY(0)";
-      setTimeout(() => {
-        title.style.opacity = "1";
-        title.style.transform = "translateY(0)";
-      }, 150);
-      setTimeout(() => {
-        subtitle.style.opacity = "1";
-        subtitle.style.transform = "translateY(0)";
-      }, 350);
-
-      blocks.forEach((block, index) => {
-        setTimeout(() => {
-          block.style.opacity = "1";
-          block.style.transform = "translateY(0)";
-        }, 600 + index * 120);
+      blocks.forEach((block) => blockObs.observe(block));
+    } else {
+      blocks.forEach((block, i) => {
+        block.style.transition = "opacity .6s ease, transform .6s ease";
+        setTimeout(
+          () => (
+            (block.style.opacity = "1"),
+            (block.style.transform = "translateY(0)")
+          ),
+          600 + i * 120
+        );
       });
-
-      window.removeEventListener("scroll", onScroll);
     }
+
+    window.removeEventListener("scroll", onScroll);
   }
 
   window.addEventListener("scroll", onScroll);
@@ -218,7 +232,7 @@ function animateServiceSection() {
 window.addEventListener("load", animateServiceSection);
 
 /***********************************
- ACHIEVEMENTS
+ ACHIEVEMENTS  (mobile animates each block on visibility)
 ***********************************/
 function animateAchievementsSection() {
   const section = document.querySelector(".achievements");
@@ -236,65 +250,85 @@ function animateAchievementsSection() {
   title.style.transform = "translateY(20px)";
   text.style.opacity = "0";
   text.style.transform = "translateY(20px)";
-  itemsTop.forEach((item) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(20px)";
-  });
-  bottomItems.forEach((item) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(20px)";
-  });
+  itemsTop.forEach(
+    (i) => ((i.style.opacity = "0"), (i.style.transform = "translateY(20px)"))
+  );
+  bottomItems.forEach(
+    (i) => ((i.style.opacity = "0"), (i.style.transform = "translateY(20px)"))
+  );
 
   function onScroll() {
-    if (triggerPoint(section)) {
-      section.style.transition =
-        subtitle.style.transition =
-        title.style.transition =
-        text.style.transition =
-          "opacity .6s ease, transform .6s ease";
-      itemsTop.forEach(
-        (item) =>
-          (item.style.transition = "opacity .6s ease, transform .6s ease")
-      );
-      bottomItems.forEach(
-        (item) =>
-          (item.style.transition = "opacity .6s ease, transform .6s ease")
+    if (!triggerPoint(section)) return;
+
+    section.style.transition =
+      subtitle.style.transition =
+      title.style.transition =
+      text.style.transition =
+        "opacity .6s ease, transform .6s ease";
+
+    section.style.opacity = "1";
+    section.style.transform = "translateY(0)";
+    setTimeout(
+      () => (
+        (subtitle.style.opacity = "1"),
+        (subtitle.style.transform = "translateY(0)")
+      ),
+      150
+    );
+    setTimeout(
+      () => (
+        (title.style.opacity = "1"), (title.style.transform = "translateY(0)")
+      ),
+      300
+    );
+
+    if (window.innerWidth <= 440) {
+      const obs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.style.transition =
+              "opacity .6s ease, transform .6s ease";
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            const num = entry.target.querySelector(
+              ".achievements-info__item-count, .achievements-stage__item-count"
+            );
+            animateCounter(num);
+            obs.unobserve(entry.target);
+          }),
+        { threshold: 0.4 }
       );
 
-      section.style.opacity = "1";
-      section.style.transform = "translateY(0)";
-      setTimeout(() => {
-        subtitle.style.opacity = "1";
-        subtitle.style.transform = "translateY(0)";
-      }, 150);
-      setTimeout(() => {
-        title.style.opacity = "1";
-        title.style.transform = "translateY(0)";
-      }, 300);
-
-      itemsTop.forEach((item, index) => {
+      itemsTop.forEach((item) => obs.observe(item));
+      bottomItems.forEach((item) => obs.observe(item));
+    } else {
+      itemsTop.forEach((item, i) => {
+        item.style.transition = "opacity .6s ease, transform .6s ease";
         setTimeout(() => {
           item.style.opacity = "1";
           item.style.transform = "translateY(0)";
           animateCounter(item.querySelector(".achievements-info__item-count"));
-        }, 500 + index * 150);
+        }, 500 + i * 150);
       });
 
-      bottomItems.forEach((item, index) => {
+      bottomItems.forEach((item, i) => {
+        item.style.transition = "opacity .6s ease, transform .6s ease";
         setTimeout(() => {
           item.style.opacity = "1";
           item.style.transform = "translateY(0)";
-          const num = item.querySelector(".achievements-stage__item-count");
-          animateCounter(num);
-        }, 1000 + index * 200);
+          animateCounter(item.querySelector(".achievements-stage__item-count"));
+        }, 1000 + i * 200);
       });
-
-      setTimeout(() => {
-        text.style.opacity = "1";
-        text.style.transform = "translateY(0)";
-      }, 1700);
-      window.removeEventListener("scroll", onScroll);
     }
+
+    setTimeout(
+      () => (
+        (text.style.opacity = "1"), (text.style.transform = "translateY(0)")
+      ),
+      1700
+    );
+    window.removeEventListener("scroll", onScroll);
   }
 
   window.addEventListener("scroll", onScroll);
@@ -302,7 +336,7 @@ function animateAchievementsSection() {
 window.addEventListener("load", animateAchievementsSection);
 
 /***********************************
- ADVANTAGES
+ ADVANTAGES (mobile visible blocks only)
 ***********************************/
 function animateAdvantagesSection() {
   const section = document.querySelector(".advantages");
@@ -317,58 +351,75 @@ function animateAdvantagesSection() {
   title.style.transform = "translateY(20px)";
   text.style.opacity = "0";
   text.style.transform = "translateY(20px)";
-  blocks.forEach((item) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(30px)";
-  });
-  listItems.forEach((item) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(20px)";
-  });
+  blocks.forEach(
+    (i) => ((i.style.opacity = "0"), (i.style.transform = "translateY(30px)"))
+  );
+  listItems.forEach(
+    (i) => ((i.style.opacity = "0"), (i.style.transform = "translateY(20px)"))
+  );
 
   function onScroll() {
-    if (triggerPoint(section)) {
-      section.style.transition =
-        title.style.transition =
-        text.style.transition =
-          "opacity .6s ease, transform .6s ease";
-      blocks.forEach(
-        (item) =>
-          (item.style.transition = "opacity .6s ease, transform .6s ease")
-      );
-      listItems.forEach(
-        (item) =>
-          (item.style.transition = "opacity .6s ease, transform .6s ease")
+    if (!triggerPoint(section)) return;
+
+    section.style.transition =
+      title.style.transition =
+      text.style.transition =
+        "opacity .6s ease, transform .6s ease";
+
+    section.style.opacity = "1";
+    section.style.transform = "translateY(0)";
+    setTimeout(
+      () => (
+        (title.style.opacity = "1"), (title.style.transform = "translateY(0)")
+      ),
+      200
+    );
+
+    if (window.innerWidth <= 440) {
+      const blockObs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.style.transition =
+              "opacity .6s ease, transform .6s ease";
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            blockObs.unobserve(entry.target);
+          }),
+        { threshold: 0.3 }
       );
 
-      section.style.opacity = "1";
-      section.style.transform = "translateY(0)";
-      setTimeout(() => {
-        title.style.opacity = "1";
-        title.style.transform = "translateY(0)";
-      }, 200);
-
+      blocks.forEach((block) => blockObs.observe(block));
+      listItems.forEach((li) => blockObs.observe(li));
+    } else {
       blocks.forEach((item, index) => {
-        setTimeout(() => {
-          item.style.opacity = "1";
-          item.style.transform = "translateY(0)";
-        }, 400 + index * 150);
+        item.style.transition = "opacity .6s ease, transform .6s ease";
+        setTimeout(
+          () => (
+            (item.style.opacity = "1"), (item.style.transform = "translateY(0)")
+          ),
+          400 + index * 150
+        );
       });
-
-      setTimeout(() => {
-        text.style.opacity = "1";
-        text.style.transform = "translateY(0)";
-      }, 950);
 
       listItems.forEach((item, index) => {
-        setTimeout(() => {
-          item.style.opacity = "1";
-          item.style.transform = "translateY(0)";
-        }, 1100 + index * 120);
+        item.style.transition = "opacity .6s ease, transform .6s ease";
+        setTimeout(
+          () => (
+            (item.style.opacity = "1"), (item.style.transform = "translateY(0)")
+          ),
+          1100 + index * 120
+        );
       });
-
-      window.removeEventListener("scroll", onScroll);
     }
+
+    setTimeout(
+      () => (
+        (text.style.opacity = "1"), (text.style.transform = "translateY(0)")
+      ),
+      950
+    );
+    window.removeEventListener("scroll", onScroll);
   }
 
   window.addEventListener("scroll", onScroll);
@@ -386,11 +437,10 @@ function animateBar(block) {
 
   const percent = parseFloat(countEl.textContent.replace(/[^0-9.]/g, "")) || 0;
   line.style.width = "0px";
-  const targetPx = (percent / 100) * body.clientWidth;
 
   requestAnimationFrame(() => {
     line.style.transition = "width 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)";
-    line.style.width = `${targetPx}px`;
+    line.style.width = `${(percent / 100) * body.clientWidth}px`;
   });
 }
 
@@ -403,7 +453,7 @@ if (portfolioSection) {
       const items = portfolioSection.querySelectorAll(
         ".portfolio-blocks__item"
       );
-      items.forEach((item, i) => {
+      items.forEach((item, index) => {
         item.style.opacity = "0";
         item.style.transform = "translateY(20px)";
         item.style.transition = "opacity .6s ease, transform .6s ease";
@@ -411,19 +461,15 @@ if (portfolioSection) {
         setTimeout(() => {
           item.style.opacity = "1";
           item.style.transform = "translateY(0)";
-          const count = item.querySelector(".portfolio-blocks__item-count");
-          animateCounter(count);
+          animateCounter(item.querySelector(".portfolio-blocks__item-count"));
           animateBar(item);
-        }, i * 200);
+        }, index * 200);
       });
 
       observer.disconnect();
     },
-    {
-      threshold: window.innerWidth <= 440 ? 0.1 : 0.3,
-    }
+    { threshold: window.innerWidth <= 440 ? 0.1 : 0.3 }
   );
-
   observer.observe(portfolioSection);
 }
 
@@ -437,11 +483,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   block.style.opacity = "0";
   block.style.transform = "translateY(120px)";
-
-  items.forEach((item) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(60px)";
-  });
+  items.forEach(
+    (item) => (
+      (item.style.opacity = "0"), (item.style.transform = "translateY(60px)")
+    )
+  );
 
   function onScroll() {
     if (triggerPoint(block)) {
@@ -460,7 +506,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.removeEventListener("scroll", onScroll);
     }
   }
-
   window.addEventListener("scroll", onScroll);
 });
 
@@ -469,7 +514,6 @@ document.addEventListener("DOMContentLoaded", () => {
 ***********************************/
 document.addEventListener("DOMContentLoaded", () => {
   const formSection = document.querySelector(".form");
-
   const animatedItems = document.querySelectorAll(
     ".form-content img, .form__muted, .form__subtitle, .user-action input, .user-action textarea, .form__btn"
   );
@@ -478,10 +522,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   formSection.style.opacity = "0";
   formSection.style.transform = "translateY(60px)";
-  animatedItems.forEach((item) => {
-    item.style.opacity = "0";
-    item.style.transform = "translateY(35px)";
-  });
+  animatedItems.forEach(
+    (item) => (
+      (item.style.opacity = "0"), (item.style.transform = "translateY(35px)")
+    )
+  );
 
   function onScroll() {
     if (triggerPoint(formSection)) {
