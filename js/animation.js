@@ -3,6 +3,11 @@
 ***********************************/
 function runHeaderAnimation() {
   const header = document.querySelector(".header");
+
+  // ЖДЕМ ПРЕЛОАДЕР
+  const preloader = document.querySelector(".preloader");
+  if (preloader && !preloader.classList.contains("load")) return;
+
   if (!header) return;
 
   header.style.transition = "opacity .6s ease, transform .6s ease";
@@ -19,22 +24,28 @@ document.addEventListener("DOMContentLoaded", () => {
   header.style.transform = "translateY(-100px)";
 });
 
+// НЕ ЗАПУСКАЕМ НА load, ПОКА НЕТ preloader.load
 window.addEventListener("load", () => {
-  setTimeout(runHeaderAnimation, 150);
+  const interval = setInterval(() => {
+    const preloader = document.querySelector(".preloader");
+    if (preloader && preloader.classList.contains("load")) {
+      clearInterval(interval); // стоп polling
+      runHeaderAnimation();
+    }
+  }, 50);
 });
 
-const preloader = document.querySelector(".preloader");
-if (preloader) {
+// СЛЕДИМ ЗА PRELOADER LOAD (основной триггер)
+const preloaderEl = document.querySelector(".preloader");
+if (preloaderEl) {
   const observer = new MutationObserver(() => {
-    if (preloader.classList.contains("load")) {
+    if (preloaderEl.classList.contains("load")) {
       runHeaderAnimation();
       observer.disconnect();
     }
   });
-  observer.observe(preloader, { attributes: true });
+  observer.observe(preloaderEl, { attributes: true });
 }
-
-
 
 /***********************************
   HELPERS
@@ -44,7 +55,7 @@ function triggerPoint(section) {
   const isMobile = window.innerWidth <= 440;
 
   if (isMobile) return rect.top <= window.innerHeight * 0.95; // видно в зоне
-  return rect.top <= window.innerHeight * 0.30; // раньше на 20%
+  return rect.top <= window.innerHeight * 0.3; // раньше на 20%
 }
 
 function animateCounter(el) {
@@ -66,8 +77,6 @@ function animateCounter(el) {
   requestAnimationFrame(tick);
 }
 
-
-
 /***********************************
  HERO
 ***********************************/
@@ -80,17 +89,32 @@ function runHeroAnimation() {
   const infoItems = document.querySelectorAll(".hero-content__info-item");
   const counts = document.querySelectorAll(".hero-content__info-count");
 
-  hero.style.transition = muted.style.transition = title.style.transition =
-    subtitle.style.transition = actions.style.transition =
-    "opacity .6s ease, transform .6s ease";
+  hero.style.transition =
+    muted.style.transition =
+    title.style.transition =
+    subtitle.style.transition =
+    actions.style.transition =
+      "opacity .6s ease, transform .6s ease";
 
   hero.style.opacity = "1";
   hero.style.transform = "translateY(0)";
 
-  setTimeout(() => { muted.style.opacity = "1"; muted.style.transform = "translateY(0)"; }, 150);
-  setTimeout(() => { title.style.opacity = "1"; title.style.transform = "translateY(0)"; }, 300);
-  setTimeout(() => { subtitle.style.opacity = "1"; subtitle.style.transform = "translateY(0)"; }, 450);
-  setTimeout(() => { actions.style.opacity = "1"; actions.style.transform = "translateY(0)"; }, 600);
+  setTimeout(() => {
+    muted.style.opacity = "1";
+    muted.style.transform = "translateY(0)";
+  }, 150);
+  setTimeout(() => {
+    title.style.opacity = "1";
+    title.style.transform = "translateY(0)";
+  }, 300);
+  setTimeout(() => {
+    subtitle.style.opacity = "1";
+    subtitle.style.transform = "translateY(0)";
+  }, 450);
+  setTimeout(() => {
+    actions.style.opacity = "1";
+    actions.style.transform = "translateY(0)";
+  }, 600);
 
   infoItems.forEach((item, index) => {
     setTimeout(() => {
@@ -108,25 +132,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const subtitle = document.querySelector(".hero-content__subtitle");
   const actions = document.querySelector(".hero-content__actions");
   const infoItems = document.querySelectorAll(".hero-content__info-item");
+  const preloader = document.querySelector(".preloader");
 
-  hero.style.opacity = "0"; hero.style.transform = "translateY(30px)";
-  muted.style.opacity = "0"; muted.style.transform = "translateY(15px)";
-  title.style.opacity = "0"; title.style.transform = "translateY(15px)";
-  subtitle.style.opacity = "0"; subtitle.style.transform = "translateY(15px)";
-  actions.style.opacity = "0"; actions.style.transform = "translateY(15px)";
-  infoItems.forEach(item => { item.style.opacity = "0"; item.style.transform = "translateY(15px)"; });
+  // стартовые состояния (как у тебя было)
+  hero.style.opacity = "0";
+  hero.style.transform = "translateY(30px)";
+  muted.style.opacity = "0";
+  muted.style.transform = "translateY(15px)";
+  title.style.opacity = "0";
+  title.style.transform = "translateY(15px)";
+  subtitle.style.opacity = "0";
+  subtitle.style.transform = "translateY(15px)";
+  actions.style.opacity = "0";
+  actions.style.transform = "translateY(15px)";
+  infoItems.forEach((item) => {
+    item.style.opacity = "0";
+    item.style.transform = "translateY(15px)";
+  });
 
-  function heroScroll() {
-    if (triggerPoint(hero)) {
-      runHeroAnimation();
-      window.removeEventListener("scroll", heroScroll);
+  // ✅ ВОТ ЭТО ГЛАВНОЕ: следим в реальном времени за появлением .load
+  const observer = new MutationObserver(() => {
+    if (preloader.classList.contains("load")) {
+      setTimeout(runHeroAnimation, 500); // ✅ 1 секунда после load
+      observer.disconnect();
     }
-  }
+  });
 
-  window.addEventListener("scroll", heroScroll);
-  heroScroll();
+  observer.observe(preloader, { attributes: true });
 });
-
 
 
 /***********************************
@@ -138,22 +171,44 @@ function animateServiceSection() {
   const title = document.querySelector(".service__title");
   const subtitle = document.querySelector(".service__subtitle");
 
-  section.style.opacity = "0"; section.style.transform = "translateY(30px)";
-  title.style.opacity = "0"; title.style.transform = "translateY(15px)";
-  subtitle.style.opacity = "0"; subtitle.style.transform = "translateY(15px)";
-  blocks.forEach(block => { block.style.opacity = "0"; block.style.transform = "translateY(20px)"; });
+  section.style.opacity = "0";
+  section.style.transform = "translateY(30px)";
+  title.style.opacity = "0";
+  title.style.transform = "translateY(15px)";
+  subtitle.style.opacity = "0";
+  subtitle.style.transform = "translateY(15px)";
+  blocks.forEach((block) => {
+    block.style.opacity = "0";
+    block.style.transform = "translateY(20px)";
+  });
 
   function onScroll() {
     if (triggerPoint(section)) {
-      section.style.transition = title.style.transition = subtitle.style.transition = "opacity .6s ease, transform .6s ease";
-      blocks.forEach(block => block.style.transition = "opacity .6s ease, transform .6s ease");
+      section.style.transition =
+        title.style.transition =
+        subtitle.style.transition =
+          "opacity .6s ease, transform .6s ease";
+      blocks.forEach(
+        (block) =>
+          (block.style.transition = "opacity .6s ease, transform .6s ease")
+      );
 
-      section.style.opacity = "1";   section.style.transform = "translateY(0)";
-      setTimeout(() => { title.style.opacity = "1"; title.style.transform = "translateY(0)"; }, 150);
-      setTimeout(() => { subtitle.style.opacity = "1"; subtitle.style.transform = "translateY(0)"; }, 350);
+      section.style.opacity = "1";
+      section.style.transform = "translateY(0)";
+      setTimeout(() => {
+        title.style.opacity = "1";
+        title.style.transform = "translateY(0)";
+      }, 150);
+      setTimeout(() => {
+        subtitle.style.opacity = "1";
+        subtitle.style.transform = "translateY(0)";
+      }, 350);
 
       blocks.forEach((block, index) => {
-        setTimeout(() => { block.style.opacity = "1"; block.style.transform = "translateY(0)"; }, 600 + index * 120);
+        setTimeout(() => {
+          block.style.opacity = "1";
+          block.style.transform = "translateY(0)";
+        }, 600 + index * 120);
       });
 
       window.removeEventListener("scroll", onScroll);
@@ -163,8 +218,6 @@ function animateServiceSection() {
   window.addEventListener("scroll", onScroll);
 }
 window.addEventListener("load", animateServiceSection);
-
-
 
 /***********************************
  ACHIEVEMENTS
@@ -177,22 +230,49 @@ function animateAchievementsSection() {
   const bottomItems = document.querySelectorAll(".achievements-stage__item");
   const text = document.querySelector(".achievements__text");
 
-  section.style.opacity = "0"; section.style.transform = "translateY(40px)";
-  subtitle.style.opacity = "0"; subtitle.style.transform = "translateY(20px)";
-  title.style.opacity = "0"; title.style.transform = "translateY(20px)";
-  text.style.opacity = "0"; text.style.transform = "translateY(20px)";
-  itemsTop.forEach(item => { item.style.opacity = "0"; item.style.transform = "translateY(20px)"; });
-  bottomItems.forEach(item => { item.style.opacity = "0"; item.style.transform = "translateY(20px)"; });
+  section.style.opacity = "0";
+  section.style.transform = "translateY(40px)";
+  subtitle.style.opacity = "0";
+  subtitle.style.transform = "translateY(20px)";
+  title.style.opacity = "0";
+  title.style.transform = "translateY(20px)";
+  text.style.opacity = "0";
+  text.style.transform = "translateY(20px)";
+  itemsTop.forEach((item) => {
+    item.style.opacity = "0";
+    item.style.transform = "translateY(20px)";
+  });
+  bottomItems.forEach((item) => {
+    item.style.opacity = "0";
+    item.style.transform = "translateY(20px)";
+  });
 
   function onScroll() {
     if (triggerPoint(section)) {
-      section.style.transition = subtitle.style.transition = title.style.transition = text.style.transition = "opacity .6s ease, transform .6s ease";
-      itemsTop.forEach(item => item.style.transition = "opacity .6s ease, transform .6s ease");
-      bottomItems.forEach(item => item.style.transition = "opacity .6s ease, transform .6s ease");
+      section.style.transition =
+        subtitle.style.transition =
+        title.style.transition =
+        text.style.transition =
+          "opacity .6s ease, transform .6s ease";
+      itemsTop.forEach(
+        (item) =>
+          (item.style.transition = "opacity .6s ease, transform .6s ease")
+      );
+      bottomItems.forEach(
+        (item) =>
+          (item.style.transition = "opacity .6s ease, transform .6s ease")
+      );
 
-      section.style.opacity = "1"; section.style.transform = "translateY(0)";
-      setTimeout(() => { subtitle.style.opacity = "1"; subtitle.style.transform = "translateY(0)"; }, 150);
-      setTimeout(() => { title.style.opacity = "1"; title.style.transform = "translateY(0)"; }, 300);
+      section.style.opacity = "1";
+      section.style.transform = "translateY(0)";
+      setTimeout(() => {
+        subtitle.style.opacity = "1";
+        subtitle.style.transform = "translateY(0)";
+      }, 150);
+      setTimeout(() => {
+        title.style.opacity = "1";
+        title.style.transform = "translateY(0)";
+      }, 300);
 
       itemsTop.forEach((item, index) => {
         setTimeout(() => {
@@ -211,7 +291,10 @@ function animateAchievementsSection() {
         }, 1000 + index * 200);
       });
 
-      setTimeout(() => { text.style.opacity = "1"; text.style.transform = "translateY(0)"; }, 1700);
+      setTimeout(() => {
+        text.style.opacity = "1";
+        text.style.transform = "translateY(0)";
+      }, 1700);
       window.removeEventListener("scroll", onScroll);
     }
   }
@@ -219,8 +302,6 @@ function animateAchievementsSection() {
   window.addEventListener("scroll", onScroll);
 }
 window.addEventListener("load", animateAchievementsSection);
-
-
 
 /***********************************
  ADVANTAGES
@@ -232,29 +313,60 @@ function animateAdvantagesSection() {
   const text = document.querySelector(".advantages__text");
   const listItems = document.querySelectorAll(".advantages__list-item");
 
-  section.style.opacity = "0"; section.style.transform = "translateY(40px)";
-  title.style.opacity = "0"; title.style.transform = "translateY(20px)";
-  text.style.opacity = "0"; text.style.transform = "translateY(20px)";
-  blocks.forEach(item => { item.style.opacity = "0"; item.style.transform = "translateY(30px)"; });
-  listItems.forEach(item => { item.style.opacity = "0"; item.style.transform = "translateY(20px)"; });
+  section.style.opacity = "0";
+  section.style.transform = "translateY(40px)";
+  title.style.opacity = "0";
+  title.style.transform = "translateY(20px)";
+  text.style.opacity = "0";
+  text.style.transform = "translateY(20px)";
+  blocks.forEach((item) => {
+    item.style.opacity = "0";
+    item.style.transform = "translateY(30px)";
+  });
+  listItems.forEach((item) => {
+    item.style.opacity = "0";
+    item.style.transform = "translateY(20px)";
+  });
 
   function onScroll() {
     if (triggerPoint(section)) {
-      section.style.transition = title.style.transition = text.style.transition = "opacity .6s ease, transform .6s ease";
-      blocks.forEach(item => item.style.transition = "opacity .6s ease, transform .6s ease");
-      listItems.forEach(item => item.style.transition = "opacity .6s ease, transform .6s ease");
+      section.style.transition =
+        title.style.transition =
+        text.style.transition =
+          "opacity .6s ease, transform .6s ease";
+      blocks.forEach(
+        (item) =>
+          (item.style.transition = "opacity .6s ease, transform .6s ease")
+      );
+      listItems.forEach(
+        (item) =>
+          (item.style.transition = "opacity .6s ease, transform .6s ease")
+      );
 
-      section.style.opacity = "1"; section.style.transform = "translateY(0)";
-      setTimeout(() => { title.style.opacity = "1"; title.style.transform = "translateY(0)"; }, 200);
+      section.style.opacity = "1";
+      section.style.transform = "translateY(0)";
+      setTimeout(() => {
+        title.style.opacity = "1";
+        title.style.transform = "translateY(0)";
+      }, 200);
 
       blocks.forEach((item, index) => {
-        setTimeout(() => { item.style.opacity = "1"; item.style.transform = "translateY(0)"; }, 400 + index * 150);
+        setTimeout(() => {
+          item.style.opacity = "1";
+          item.style.transform = "translateY(0)";
+        }, 400 + index * 150);
       });
 
-      setTimeout(() => { text.style.opacity = "1"; text.style.transform = "translateY(0)"; }, 950);
+      setTimeout(() => {
+        text.style.opacity = "1";
+        text.style.transform = "translateY(0)";
+      }, 950);
 
       listItems.forEach((item, index) => {
-        setTimeout(() => { item.style.opacity = "1"; item.style.transform = "translateY(0)"; }, 1100 + index * 120);
+        setTimeout(() => {
+          item.style.opacity = "1";
+          item.style.transform = "translateY(0)";
+        }, 1100 + index * 120);
       });
 
       window.removeEventListener("scroll", onScroll);
@@ -264,8 +376,6 @@ function animateAdvantagesSection() {
   window.addEventListener("scroll", onScroll);
 }
 window.addEventListener("load", animateAdvantagesSection);
-
-
 
 /***********************************
  PORTFOLIO
@@ -292,7 +402,9 @@ if (portfolioSection) {
     (entries) => {
       if (!entries[0].isIntersecting) return;
 
-      const items = portfolioSection.querySelectorAll(".portfolio-blocks__item");
+      const items = portfolioSection.querySelectorAll(
+        ".portfolio-blocks__item"
+      );
       items.forEach((item, i) => {
         item.style.opacity = "0";
         item.style.transform = "translateY(20px)";
@@ -317,8 +429,6 @@ if (portfolioSection) {
   observer.observe(portfolioSection);
 }
 
-
-
 /***********************************
  ABOUT
 ***********************************/
@@ -330,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
   block.style.opacity = "0";
   block.style.transform = "translateY(120px)";
 
-  items.forEach(item => {
+  items.forEach((item) => {
     item.style.opacity = "0";
     item.style.transform = "translateY(60px)";
   });
@@ -356,8 +466,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScroll);
 });
 
-
-
 /***********************************
  FORM
 ***********************************/
@@ -372,7 +480,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   formSection.style.opacity = "0";
   formSection.style.transform = "translateY(60px)";
-  animatedItems.forEach(item => {
+  animatedItems.forEach((item) => {
     item.style.opacity = "0";
     item.style.transform = "translateY(35px)";
   });
