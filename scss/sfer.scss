@@ -1,0 +1,106 @@
+.sfer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  @media (max-width: 440px) {
+    transform: scale(0.6);
+    height: 345px;
+  }
+}
+.sfer-content {
+  // .sfer-content__title
+
+  &__title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    color: var(--Gray-700, #101010);
+
+    /* montserrat/display/small-regular */
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 110%; /* 46.2px */
+    letter-spacing: var(--Heading-H4_Semibold-Letter-Spacing, 0);
+  }
+
+  // .sfer-content__items
+
+  &__items {
+  }
+
+  // .sfer-content__items-item
+
+  &__items-item {
+  }
+
+  // .sfer-content__items-circle
+
+  &__items-circle {
+    border: 1px solid #fff;
+  }
+}
+
+.portfolio__end {
+  width: 100%;
+}
+
+.sfer-item-1 .sfer-content__items-circle {
+  width: 268px;
+  height: 300px;
+  border-radius: 50%;
+
+  transform: rotateY(70deg); /* <-- поворот в 3D боком */
+  transform-style: preserve-3d;
+}
+
+.blur-item {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.blur-item-purple {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+
+  border-radius: 338px;
+  background: radial-gradient(
+    79.45% 79.61% at -7.66% 50%,
+    #e59cff 0%,
+    #6067ee 100%
+  );
+  background-blend-mode: screen;
+  filter: blur(250px);
+
+  width: 331px;
+  height: 338px;
+}
+
+.sfer-item-1,
+.sfer-item-2,
+.sfer-item-3,
+.sfer-item-4,
+.sfer-item-5,
+.sfer-item-6 {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sfer-content__items-item svg {
+  position: relative;
+  z-index: 10;
+  overflow: visible; // у тебя уже стоит, это хорошо
+}

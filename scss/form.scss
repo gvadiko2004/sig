@@ -82,7 +82,7 @@
       align-items: center;
 
       border-radius: 12px;
-      border: 1px solid var(--Gray-300, #8e8e8e);
+      border: 1px solid var(--Gray-300, #fff);
 
       color: var(--Gray-300, #ffffff);
 
@@ -92,8 +92,18 @@
       line-height: 140%; /* 22.4px */
       letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
 
+      opacity: 0.4;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:focus {
+        opacity: 1;
+      }
+
       &::placeholder {
-        color: var(--Gray-300, #8e8e8e);
+        color: var(--Gray-300, #fff);
 
         /* montserrat/title/medium-medium */
         font-size: 16px;
@@ -150,36 +160,48 @@
   // .form__btn
 
   &__btn {
-    display: flex;
-    padding: var(--Space-1xl, 18px) var(--Space-3xl, 32px);
-    justify-content: center;
-    align-items: center;
-    gap: var(--Space-m, 8px);
+  display: flex;
+  padding: var(--Space-1xl, 18px) var(--Space-3xl, 32px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--Space-m, 8px);
 
-    border-radius: 12px;
-    background: var(--Base-White, #fff);
-    width: 100%;
+  border-radius: 12px;
+  background: var(--Base-White, #fff);
+  width: 100%;
 
-    color: var(--Gray-700, #101010);
-    text-align: center;
+  color: var(--Gray-700, #101010);
+  text-align: center;
 
-    /* tt firs neue/title/large-medium */
-    font-family: "TT Firs Neue", sans-serif;
-    font-size: clamp(1rem, 0.905rem + 0.34vw, 1.25rem);
-    font-weight: 500;
-    line-height: 110%; /* 22px */
-    letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  font-family: "TT Firs Neue", sans-serif;
+  font-size: clamp(1rem, 0.905rem + 0.34vw, 1.25rem);
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
 
-    @media (max-width: 440px) {
-      padding: 14px 0;
-    }
+  transition: background 0.25s ease; // плавность только на hover
 
-    span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  &:hover {
+    background: var(--Gray-200, #b4b4b4);
   }
+
+  &:active {
+    transition: none !important;     // <--- добавлено
+    background: linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%);
+    background-blend-mode: screen;
+  }
+
+  @media (max-width: 440px) {
+    padding: 14px 0;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 }
 
 .form-content {

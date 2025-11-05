@@ -16,3 +16,39 @@
 <IfModule mod_headers.c>
   Header set Cache-Control "public, max-age=2592000, immutable"
 </IfModule>
+
+
+
+ <!-- <div class="portfolio__end">
+                  <img src="./images/video.png" alt="">
+
+                  <div class="portfolio-blocks__item-resp resp-1" data-portfolio-resp-value="Agricultural">
+                    <p>Agricultural</p>
+                    <span class="resp__circle"></span>
+                  </div>
+
+                  <div class="portfolio-blocks__item-resp resp-2" data-portfolio-resp-value="Dairy">
+                    <p>Dairy</p>
+                    <span class="resp__circle"></span>
+                  </div>
+
+                  <div class="portfolio-blocks__item-resp resp-3" data-portfolio-resp-value="Industrial">
+                    <p>Industrial</p>
+                    <span class="resp__circle"></span>
+                  </div>
+
+                  <div class="portfolio-blocks__item-resp resp-4" data-portfolio-resp-value="Logistics">
+                    <p>Logistics</p>
+                    <span class="resp__circle"></span>
+                  </div>
+
+                   <div class="portfolio-blocks__item-resp resp-5" data-portfolio-resp-value="Office">
+                    <p>Office space</p>
+                    <span class="resp__circle"></span>
+                  </div>
+
+                  <div class="portfolio-blocks__item-resp resp-6" data-portfolio-resp-value="Trading">
+                    <p>Trading</p>
+                    <span class="resp__circle"></span>
+                  </div>
+                </div> -->

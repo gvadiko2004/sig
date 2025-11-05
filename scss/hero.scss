@@ -1,5 +1,5 @@
 .hero {
-  height: 835px;
+  height: 100vh;
 
   // background-image: url("../images/hero.jpg");
   // background-position: center;
@@ -9,7 +9,8 @@
   position: relative;
 
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  flex-direction: column;
   justify-content: center;
 
   @media (max-width: 1080px) {
@@ -30,6 +31,7 @@
     right: 0;
     bottom: 0;
     top: 0;
+    z-index: -1;
   }
 
   // .hero__inner
@@ -39,26 +41,14 @@
 }
 
 .hero-content {
+ 
+
+
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
-  gap: 24px;
+  align-items: center;
 
-  max-width: 632px;
-
-  margin-bottom: 136px;
-
-  position: relative;
-  z-index: 3;
-
-  @media (max-width: 1080px) {
-    margin-bottom: 0;
-    position: relative;
-    z-index: 10;
-
-    margin-top: 20px;
-  }
+  max-width: 728px;
 
   // .hero-content__muted
 
@@ -107,6 +97,8 @@
     line-height: 110%; /* 66px */
     letter-spacing: var(--Letter-Spacing-None, 0);
 
+    margin: 24px 0;
+
     span {
       background: var(
         --1,
@@ -127,6 +119,8 @@
     font-weight: 500;
     line-height: 140%; /* 22.4px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+
+    margin-bottom: 24px;
 
     @media (max-width: 440px) {
       line-height: 120%; /* 22.4px */
@@ -185,6 +179,26 @@
         0 0 2.1px 0 rgba(255, 255, 255, 0.25) inset,
         0 -8.91px 35px 0 #1e0d49 inset;
 
+      &:hover {
+        background: radial-gradient(
+            103.15% 103.15% at 50.39% 114.1%,
+            rgba(96, 103, 238, 0.86) 0%,
+            rgba(53, 41, 128, 0) 100%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(243, 238, 255, 0) 0%,
+            rgba(243, 238, 255, 0.04) 100%
+          ),
+          rgba(96, 103, 238, 0.4);
+        box-shadow: 0 4px 4px 0 rgba(30, 13, 73, 0.25) inset,
+          0 2px 5px 0 rgba(16, 0, 51, 0.25), 0 9px 9px 0 rgba(16, 0, 51, 0.25),
+          0 21px 12px 0 rgba(16, 0, 51, 0.12),
+          0 37px 15px 0 rgba(16, 0, 51, 0.06), 0 4px 4px 0 rgba(16, 0, 51, 0.25),
+          0 0 2.1px 0 rgba(255, 255, 255, 0.25) inset,
+          0 -8.91px 35px 0 #1e0d49 inset;
+      }
+
       @media (max-width: 440px) {
         max-width: 150px;
         width: 100%;
@@ -196,6 +210,8 @@
       display: flex;
       gap: 8px;
       align-items: center;
+
+      @include btnHover;
 
       span {
         display: flex;
@@ -212,12 +228,10 @@
     align-items: center;
     gap: 8px;
 
-    position: relative;
-    top: 77px;
+    position: absolute;
+    bottom: 60px;
 
-    @media (max-width: 440px) {
-      top: 90px;
-    }
+    
   }
 
   // .hero-content__info-item
