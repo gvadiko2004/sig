@@ -90,7 +90,7 @@
     background-blend-mode: screen;
 
     display: flex;
-    padding: 9px 24px;
+    padding: 9px 16px;
     justify-content: center;
     align-items: center;
 
@@ -104,6 +104,10 @@
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
 
     @include hidden;
+
+    @media (max-width: 1080px) {
+      padding: 9px 24px;
+    }
   }
 
   &__border-menu {

@@ -40,6 +40,10 @@
   // .footer__logo
 
   &__logo {
+    img {
+      width: 100px;
+    }
+
     @media (max-width: 768px) {
       img {
         width: 100px;
