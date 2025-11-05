@@ -157,6 +157,9 @@
     font-weight: 500;
     line-height: 110%; /* 17.6px */
     letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &.cons {
       color: #f4f0ff;

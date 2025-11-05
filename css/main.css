@@ -525,6 +525,15 @@ a {
   font-weight: 500;
   line-height: 110%; /* 17.6px */
   letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .hero-content__actions-btn.cons {
   color: #f4f0ff;
