@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const infoItems = document.querySelectorAll(".hero-content__info-item");
   const preloader = document.querySelector(".preloader");
 
-  // стартовые состояния (как у тебя было)
   hero.style.opacity = "0";
   hero.style.transform = "translateY(30px)";
   muted.style.opacity = "0";
@@ -150,10 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
     item.style.transform = "translateY(15px)";
   });
 
-  // ✅ ВОТ ЭТО ГЛАВНОЕ: следим в реальном времени за появлением .load
   const observer = new MutationObserver(() => {
     if (preloader.classList.contains("load")) {
-      setTimeout(runHeroAnimation, 500); // ✅ 1 секунда после load
+      setTimeout(runHeroAnimation, 500); 
       observer.disconnect();
     }
   });
