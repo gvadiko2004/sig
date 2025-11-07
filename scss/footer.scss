@@ -202,14 +202,51 @@
   // .footer-address__list-item
 
   &__list-item {
+    width: 24px;
+    height: 24px;
+
+    position: relative;
   }
 
   // .footer-address__list-link
 
   &__list-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
     svg {
-      width: 32px;
-      height: 32px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+    }
+
+    img {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+    }
+
+    &:hover {
+      img {
+        opacity: 1;
+      }
+
+      svg {
+        opacity: 0;
+      }
     }
   }
 }

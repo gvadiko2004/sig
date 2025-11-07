@@ -2,7 +2,7 @@
   "use strict";
 
   /****************************************
-   * SETTERS (инициализация и анимация)
+   * GLOBAL SETTERS
    ****************************************/
   function setInit(el, dy = 30) {
     if (!el) return;
@@ -40,16 +40,16 @@
   }
 
   /****************************************
-   * BAR (портфолио)
+   * PORTFOLIO BAR
    ****************************************/
   function animateBar(block) {
-    if (!block) return;
     const body = block.querySelector(".portfolio-blocks__item-body");
     const line = block.querySelector(".line");
     const countEl = block.querySelector(".portfolio-blocks__item-count");
     if (!body || !line || !countEl) return;
 
-    const percent = parseFloat(countEl.textContent.replace(/[^0-9.]/g, "")) || 0;
+    const percent =
+      parseFloat(countEl.textContent.replace(/[^0-9.]/g, "")) || 0;
     const px = (percent / 100) * body.clientWidth;
 
     line.style.width = "0px";
@@ -60,7 +60,7 @@
   }
 
   /****************************************
-   * PRELOADER SYNC
+   * PRELOADER WAIT
    ****************************************/
   function waitPreloader(cb) {
     const preloader = document.querySelector(".preloader");
@@ -77,38 +77,32 @@
   }
 
   /****************************************
-   * СТАРТ АНИМАЦИЙ РАНЬШЕ (в 2 раза)
-   ****************************************/
-  function triggerPoint(section) {
-    const rect = section.getBoundingClientRect();
-    if (window.innerWidth <= 440) return rect.top <= window.innerHeight * 0.47; // было 0.95
-    return rect.top <= window.innerHeight * 0.15; // было 0.30
-  }
-
-  /****************************************
-   * HEADER (сверху вниз, после preloader.load)
+   * HEADER — сверху вниз ✅
    ****************************************/
   function initHeader() {
     const header = document.querySelector(".header");
     if (!header) return;
 
-    // Инициализация: сверху вниз
+    // ✅ Инициализация (header сверху)
     header.style.opacity = "0";
     header.style.transform = "translateY(-100px)";
     header.style.willChange = "opacity, transform";
 
     waitPreloader(() => {
-      header.style.transition = "opacity 600ms ease, transform 600ms ease";
-      requestAnimationFrame(() => {
-        header.style.opacity = "1";
-        header.style.transform = "translateY(0)";
-      });
+      setTimeout(() => {
+        header.style.transition = "opacity 600ms ease, transform 600ms ease";
+        requestAnimationFrame(() => {
+          header.style.opacity = "1";
+          header.style.transform = "translateY(0)";
+        });
+      }, 150);
     });
   }
+
   document.addEventListener("DOMContentLoaded", initHeader);
 
   /****************************************
-   * HERO (после preloader.load, поочерёдно все элементы)
+   * HERO
    ****************************************/
   function initHero() {
     const hero = document.querySelector(".hero");
@@ -121,13 +115,9 @@
     const infoItems = document.querySelectorAll(".hero-content__info-item");
     const counts = document.querySelectorAll(".hero-content__info-count");
 
-    // init
     setInit(hero, 30);
-    setInit(muted, 15);
-    setInit(title, 15);
-    setInit(subtitle, 15);
-    setInit(actions, 15);
-    infoItems.forEach((el) => setInit(el, 15));
+    [muted, title, subtitle, actions].forEach((el) => setInit(el, 15));
+    infoItems.forEach((el) => setInit(el, 10));
 
     waitPreloader(() => {
       setShow(hero, 600);
@@ -144,103 +134,90 @@
       });
     });
   }
+
   document.addEventListener("DOMContentLoaded", initHero);
 
   /****************************************
-   * OBSERVER СЕКЦИЙ (поочерёдные анимации как в примере)
+   * OBSERVER — анимации секций
    ****************************************/
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-
         const sec = entry.target;
         const name = sec.dataset.sectionName;
 
         const run = {
           service() {
-            const title = sec.querySelector(".service__title");
-            const subtitle = sec.querySelector(".service__subtitle");
-            const blocks = sec.querySelectorAll(".service-blocks__item");
-
             setShow(sec, 600);
-            setTimeout(() => setShow(title, 600), 150);
-            setTimeout(() => setShow(subtitle, 600), 300);
-            blocks.forEach((b, i) =>
-              setTimeout(() => setShow(b, 600), 500 + i * 120)
-            );
+            sec
+              .querySelectorAll(".service-blocks__item")
+              .forEach((b, i) =>
+                setTimeout(() => setShow(b, 600), 200 + i * 150)
+              );
           },
 
           achievements() {
-            const subtitle = sec.querySelector(".achievements__subtitle");
-            const title = sec.querySelector(".achievements__title");
+            setShow(sec, 600);
             const top = sec.querySelectorAll(".achievements-info__item");
             const bottom = sec.querySelectorAll(".achievements-stage__item");
-            const text = sec.querySelector(".achievements__text");
-
-            setShow(sec, 600);
-            setTimeout(() => setShow(subtitle, 600), 150);
-            setTimeout(() => setShow(title, 600), 300);
 
             top.forEach((item, i) => {
               setTimeout(() => {
                 setShow(item, 600);
-                animateCounter(item.querySelector(".achievements-info__item-count"));
-              }, 500 + i * 150);
+                animateCounter(
+                  item.querySelector(".achievements-info__item-count")
+                );
+              }, 200 + i * 200);
             });
 
             bottom.forEach((item, i) => {
               setTimeout(() => {
                 setShow(item, 600);
-                animateCounter(item.querySelector(".achievements-stage__item-count"));
-              }, 1000 + i * 200);
+                animateCounter(
+                  item.querySelector(".achievements-stage__item-count")
+                );
+              }, 800 + i * 200);
             });
-
-            setTimeout(() => setShow(text, 600), 1700);
           },
 
           advantages() {
-            const title = sec.querySelector(".advantages__title");
-            const blocks = sec.querySelectorAll(".advantages__blocks-item");
-            const text = sec.querySelector(".advantages__text");
-            const list = sec.querySelectorAll(".advantages__list-item");
-
             setShow(sec, 600);
-            setTimeout(() => setShow(title, 600), 200);
-            blocks.forEach((el, i) =>
-              setTimeout(() => setShow(el, 600), 400 + i * 150)
-            );
-            setTimeout(() => setShow(text, 600), 950);
-            list.forEach((el, i) =>
-              setTimeout(() => setShow(el, 600), 1100 + i * 120)
-            );
+            sec
+              .querySelectorAll(".advantages__blocks-item")
+              .forEach((item, i) =>
+                setTimeout(() => setShow(item, 600), 200 + i * 150)
+              );
           },
 
           portfolio() {
             setShow(sec, 600);
-            const items = sec.querySelectorAll(".portfolio-blocks__item");
-            items.forEach((item, i) => {
-              setInit(item, 20);
-              setTimeout(() => {
-                setShow(item, 600);
-                animateCounter(item.querySelector(".portfolio-blocks__item-count"));
-                animateBar(item);
-              }, i * 200);
-            });
+            sec
+              .querySelectorAll(".portfolio-blocks__item")
+              .forEach((item, i) => {
+                setInit(item, 20);
+                setTimeout(() => {
+                  setShow(item, 600);
+                  animateCounter(
+                    item.querySelector(".portfolio-blocks__item-count")
+                  );
+                  animateBar(item);
+                }, i * 200);
+              });
           },
 
           about() {
-            setShow(sec, 700);
-            const items = sec.querySelectorAll(".about-blocks__item");
-            items.forEach((it, i) => setTimeout(() => setShow(it, 500), i * 120));
+            setShow(sec, 600);
+            sec
+              .querySelectorAll(".about-blocks__item")
+              .forEach((item, i) =>
+                setTimeout(() => setShow(item, 500), i * 120)
+              );
           },
 
           form() {
+            // ✅ форма — только fade + translateY
             setShow(sec, 700);
-            const animated = sec.querySelectorAll(
-              ".form-content img, .form__muted, .form__subtitle, .user-action input, .user-action textarea, .form__btn"
-            );
-            animated.forEach((el, i) => setTimeout(() => setShow(el, 600), i * 150));
           },
         };
 
@@ -251,57 +228,66 @@
       });
     },
     {
-      root: null,
-      rootMargin: "0px 0px -10% 0px",
       threshold: 0.05,
+      rootMargin: "0px 0px -10% 0px",
     }
   );
 
   /****************************************
-   * ПОДГОТОВКА СЕКЦИЙ (init + observe)
+   * SECTION PREP INIT
    ****************************************/
-  function prepSection(sec, dySection = 40, dyChild = 25) {
+  function prepSection(sec, dySection = 40) {
     if (!sec) return;
 
-    // Имя секции, чтобы запустить нужный сценарий
     if (!sec.dataset.sectionName) {
-      if (sec.classList.contains("service")) sec.dataset.sectionName = "service";
-      else if (sec.classList.contains("achievements")) sec.dataset.sectionName = "achievements";
-      else if (sec.classList.contains("advantages")) sec.dataset.sectionName = "advantages";
-      else if (sec.classList.contains("portfolio")) sec.dataset.sectionName = "portfolio";
-      else if (sec.classList.contains("about")) sec.dataset.sectionName = "about";
+      if (sec.classList.contains("service"))
+        sec.dataset.sectionName = "service";
+      else if (sec.classList.contains("achievements"))
+        sec.dataset.sectionName = "achievements";
+      else if (sec.classList.contains("advantages"))
+        sec.dataset.sectionName = "advantages";
+      else if (sec.classList.contains("portfolio"))
+        sec.dataset.sectionName = "portfolio";
+      else if (sec.classList.contains("about"))
+        sec.dataset.sectionName = "about";
       else if (sec.classList.contains("form")) sec.dataset.sectionName = "form";
     }
 
-    // init секции
-    setInit(sec, dySection);
-    sec.style.transition = "opacity .6s ease, transform .6s ease";
+    if (sec.dataset.sectionName === "form") {
+      setInit(sec, dySection);
+      sectionObserver.observe(sec);
+      return;
+    }
 
-    // init ключевых элементов (как в твоём примере)
+    setInit(sec, dySection);
+
     if (sec.classList.contains("service")) {
-      setInit(sec.querySelector(".service__title"), dyChild);
-      setInit(sec.querySelector(".service__subtitle"), dyChild);
-      sec.querySelectorAll(".service-blocks__item").forEach((el) => setInit(el, 20));
-    } else if (sec.classList.contains("achievements")) {
-      setInit(sec.querySelector(".achievements__subtitle"), dyChild);
-      setInit(sec.querySelector(".achievements__title"), dyChild);
-      setInit(sec.querySelector(".achievements__text"), dyChild);
-      sec.querySelectorAll(".achievements-info__item").forEach((el) => setInit(el, 20));
-      sec.querySelectorAll(".achievements-stage__item").forEach((el) => setInit(el, 20));
-    } else if (sec.classList.contains("advantages")) {
-      setInit(sec.querySelector(".advantages__title"), dyChild);
-      setInit(sec.querySelector(".advantages__text"), dyChild);
-      sec.querySelectorAll(".advantages__blocks-item").forEach((el) => setInit(el, 30));
-      sec.querySelectorAll(".advantages__list-item").forEach((el) => setInit(el, 20));
-    } else if (sec.classList.contains("portfolio")) {
-      sec.querySelectorAll(".portfolio-blocks__item").forEach((el) => setInit(el, 20));
-    } else if (sec.classList.contains("about")) {
-      sec.querySelectorAll(".about-blocks__item").forEach((el) => setInit(el, 60));
-    } else if (sec.classList.contains("form")) {
-      const animated = sec.querySelectorAll(
-        ".form-content img, .form__muted, .form__subtitle, .user-action input, .user-action textarea, .form__btn"
-      );
-      animated.forEach((el) => setInit(el, 35));
+      sec
+        .querySelectorAll(".service-blocks__item")
+        .forEach((el) => setInit(el, 20));
+    }
+    if (sec.classList.contains("achievements")) {
+      sec
+        .querySelectorAll(".achievements-info__item")
+        .forEach((el) => setInit(el, 20));
+      sec
+        .querySelectorAll(".achievements-stage__item")
+        .forEach((el) => setInit(el, 20));
+    }
+    if (sec.classList.contains("advantages")) {
+      sec
+        .querySelectorAll(".advantages__blocks-item")
+        .forEach((el) => setInit(el, 30));
+    }
+    if (sec.classList.contains("portfolio")) {
+      sec
+        .querySelectorAll(".portfolio-blocks__item")
+        .forEach((el) => setInit(el, 20));
+    }
+    if (sec.classList.contains("about")) {
+      sec
+        .querySelectorAll(".about-blocks__item")
+        .forEach((el) => setInit(el, 30));
     }
 
     sectionObserver.observe(sec);
@@ -309,7 +295,9 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     document
-      .querySelectorAll(".service, .achievements, .advantages, .portfolio, .about, .form")
+      .querySelectorAll(
+        ".service, .achievements, .advantages, .portfolio, .about, .form"
+      )
       .forEach((sec) => prepSection(sec));
   });
 })();

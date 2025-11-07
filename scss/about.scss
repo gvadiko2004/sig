@@ -6,8 +6,8 @@
     top: 0;
 
     @media (max-width: 1080px) {
-     top: auto;
-     bottom: 50%; 
+      top: auto;
+      bottom: 50%;
     }
   }
 
@@ -84,6 +84,7 @@
     border-radius: 12px;
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
     @include inner-shadow-premium();
+    @include defBlock;
 
     @media (max-width: 1080px) {
       gap: 24px;
@@ -185,5 +186,3 @@
     -webkit-text-fill-color: transparent;
   }
 }
-
-

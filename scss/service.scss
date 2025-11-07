@@ -1,6 +1,6 @@
 .service {
   position: relative;
- 
+
   // .service__inner
 
   &__inner {
@@ -89,6 +89,8 @@
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
 
     @include inner-shadow-premium();
+
+    @include defBlock;
 
     @media (max-width: 440px) {
       padding: 27px 22px;
@@ -231,6 +233,10 @@
     margin-top: 20px;
     width: 100%;
 
+    transition: 0.2s ease !important;
+
+    @include btnGradient;
+
     @media (max-width: 440px) {
       margin-top: 34px;
       font-size: 14px;
@@ -246,9 +252,7 @@
 .list-reset {
 }
 
-
 .service .cirlcle-filter-rose {
-
   right: -10vw;
   bottom: 0;
 }

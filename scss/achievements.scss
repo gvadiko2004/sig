@@ -66,6 +66,7 @@
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
 
     @include inner-shadow-premium();
+ @include defBlock;
 
     @media (max-width: 440px) {
       min-height: 232px;
@@ -77,7 +78,7 @@
       inset: 0; // заменяет left+right+top+bottom: 0
 
       border-radius: inherit;
-      padding: 2px; // толщина рамки
+      padding: 1px; // толщина рамки
       background: linear-gradient(135deg, #ffffff73, #3b3b3b, #000000);
 
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
@@ -155,6 +156,8 @@
 
     padding: 36px 32px;
 
+     @include defBlock;
+
     @media (max-width: 440px) {
       min-height: 232px;
     }
@@ -186,7 +189,7 @@
       inset: 0; // заменяет left+right+top+bottom: 0
 
       border-radius: inherit;
-      padding: 2px; // толщина рамки
+      padding: 1px; // толщина рамки
       background: linear-gradient(135deg, #ffffff73, #3b3b3b, #000000);
 
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
