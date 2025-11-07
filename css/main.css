@@ -2269,6 +2269,36 @@ a {
   overflow: visible;
 }
 
+.sfer-item-2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(-180deg);
+          transform: translate(-50%, -50%) rotate(-180deg);
+}
+.sfer-item-2 svg {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+.sfer-item-1 {
+  -webkit-transform: translate(-50%, -50%) scaleX(-1) rotate(115deg);
+          transform: translate(-50%, -50%) scaleX(-1) rotate(115deg);
+}
+.sfer-item-1 svg g {
+  -webkit-transform: rotate(-112deg) scaleX(-1);
+          transform: rotate(-112deg) scaleX(-1);
+}
+
+.sfer-item-6 {
+  -webkit-transform: translate(-50%, -50%) scaleX(-1);
+          transform: translate(-50%, -50%) scaleX(-1);
+}
+.sfer-item-6 svg g {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+}
+
 .footer {
   margin-top: 125px;
 }
