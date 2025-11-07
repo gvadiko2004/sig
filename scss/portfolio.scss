@@ -211,7 +211,9 @@
 
     border: 1px solid transparent; // ✅ исправление
 
-    transition: border-color 0.2s ease !important; // ✅ фокус только на цвете
+    transition: all 0.2s ease !important; // ✅ фокус только на цвете
+    
+    
     cursor: pointer;
     &.active {
       border-color: #e59cff;

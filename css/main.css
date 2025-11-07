@@ -116,6 +116,12 @@ a {
   margin: 0;
 }
 
+@media (min-width: 1600px) {
+  .header .container {
+    padding: 0 190px;
+    max-width: 100%;
+  }
+}
 .container {
   max-width: 1250px;
   margin: 0 auto;
@@ -1561,8 +1567,8 @@ a {
   background: var(--Gray-600, #171717);
   padding: 14px;
   border: 1px solid transparent;
-  -webkit-transition: border-color 0.2s ease !important;
-  transition: border-color 0.2s ease !important;
+  -webkit-transition: all 0.2s ease !important;
+  transition: all 0.2s ease !important;
   cursor: pointer;
 }
 .portfolio-blocks__item.active {
