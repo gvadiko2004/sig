@@ -116,12 +116,6 @@ a {
   margin: 0;
 }
 
-@media (min-width: 1600px) {
-  .header .container {
-    padding: 0 190px;
-    max-width: 100%;
-  }
-}
 .container {
   max-width: 1250px;
   margin: 0 auto;
@@ -246,8 +240,7 @@ a {
 }
 .header__btn {
   border-radius: 8.908px;
-  background: var(--1, linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%));
-  background-blend-mode: screen;
+  background-color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -259,21 +252,26 @@ a {
       -ms-flex-align: center;
           align-items: center;
   color: var(--Gray-700, #101010);
-  /* tt firs neue/title/medium-medium */
   font-family: "TT Firs Neue";
   font-size: 16px;
   font-weight: 500;
-  line-height: 110%; /* 17.6px */
-  letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
+  line-height: 110%;
 }
-@media (max-width: 1080px) {
-  .header__btn {
-    display: none;
-  }
+.header__btn:active {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0.01%, #e59cff), color-stop(148.83%, #6067ee));
+  background: linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%);
+}
+.header__btn:hover {
+  background-color: var(--Gray-200, #b4b4b4);
 }
 @media (max-width: 1080px) {
   .header__btn {
     padding: 9px 24px;
+  }
+}
+@media (max-width: 1080px) and (max-width: 1080px) {
+  .header__btn {
+    display: none;
   }
 }
 .header__border-menu {
@@ -1598,7 +1596,7 @@ a {
   margin-bottom: 6px;
   color: var(--Base-White, #fff);
   font-family: "TT Firs Neue", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 120%; /* 14.4px */
   letter-spacing: var(--Subtitle-Subtitle-2_Medium-Letter-Spacing, 0);
