@@ -207,3 +207,49 @@
     height: 120px;
   }
 }
+
+.loading {
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110%; /* 17.492px */
+
+  background: var(--1, linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  position: relative;
+  bottom: 210px;
+  left: 10px;
+  white-space: nowrap;
+
+  @media (max-width: 440px) {
+    bottom: 170px;
+    font-size: 14px;
+  }
+}
+
+.dots {
+  display: inline-block;
+  position: relative;
+  width: 20px; /* РЕАЛЬНО фиксированное место */
+}
+
+.dots .ghost {
+  background-color: #fff;
+  visibility: hidden; /* Резервируем пространство */
+}
+
+.dots .live {
+  position: absolute;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+
+  background: var(--1, linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

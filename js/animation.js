@@ -2,7 +2,7 @@
   "use strict";
 
   /****************************************
-   * GLOBAL SETTERS
+   * HELPERS
    ****************************************/
   function setInit(el, dy = 30) {
     if (!el) return;
@@ -20,29 +20,28 @@
     });
   }
 
-  /****************************************
-   * COUNTER
-   ****************************************/
   function animateCounter(el, duration = 1200) {
     if (!el) return;
     const original = el.textContent.trim();
-    const num = parseFloat(original.replace(/[^0-9.]/g, ""));
+    const match = original.match(/-?\d+(\.\d+)?/);
+    if (!match) return;
+    const num = parseFloat(match[0]);
     if (isNaN(num)) return;
-    const suffix = original.replace(/[0-9.]/g, "");
-    const startTS = performance.now();
 
+    const prefix = original.slice(0, match.index);
+    const suffix = original.slice(match.index + match[0].length);
+
+    const startTS = performance.now();
     function tick(now) {
       const p = Math.min((now - startTS) / duration, 1);
-      el.textContent = Math.floor(p * num) + suffix;
+      el.textContent = `${prefix}${Math.floor(p * num)}${suffix}`;
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
 
-  /****************************************
-   * PORTFOLIO BAR
-   ****************************************/
   function animateBar(block) {
+    if (!block) return;
     const body = block.querySelector(".portfolio-blocks__item-body");
     const line = block.querySelector(".line");
     const countEl = block.querySelector(".portfolio-blocks__item-count");
@@ -59,9 +58,6 @@
     });
   }
 
-  /****************************************
-   * PRELOADER WAIT
-   ****************************************/
   function waitPreloader(cb) {
     const preloader = document.querySelector(".preloader");
     if (!preloader) return cb();
@@ -77,43 +73,39 @@
   }
 
   /****************************************
-   * HEADER — сверху вниз ✅
+   * HEADER (после прелоадера)
    ****************************************/
   function initHeader() {
     const header = document.querySelector(".header");
     if (!header) return;
 
-    // ✅ Инициализация (header сверху)
     header.style.opacity = "0";
     header.style.transform = "translateY(-100px)";
     header.style.willChange = "opacity, transform";
 
     waitPreloader(() => {
-      setTimeout(() => {
-        header.style.transition = "opacity 600ms ease, transform 600ms ease";
-        requestAnimationFrame(() => {
-          header.style.opacity = "1";
-          header.style.transform = "translateY(0)";
-        });
-      }, 150);
+      header.style.transition = "opacity 600ms ease, transform 600ms ease";
+      requestAnimationFrame(() => {
+        header.style.opacity = "1";
+        header.style.transform = "translateY(0)";
+      });
     });
   }
-
   document.addEventListener("DOMContentLoaded", initHeader);
 
   /****************************************
-   * HERO
+   * HERO (поочерёдно, после прелоадера)
    ****************************************/
   function initHero() {
     const hero = document.querySelector(".hero");
     if (!hero) return;
 
-    const muted = document.querySelector(".hero-content__muted");
-    const title = document.querySelector(".hero-content__title");
-    const subtitle = document.querySelector(".hero-content__subtitle");
-    const actions = document.querySelector(".hero-content__actions");
-    const infoItems = document.querySelectorAll(".hero-content__info-item");
-    const counts = document.querySelectorAll(".hero-content__info-count");
+    const muted = hero.querySelector(".hero-content__muted");
+    const title = hero.querySelector(".hero-content__title");
+    const subtitle = hero.querySelector(".hero-content__subtitle");
+    const actions = hero.querySelector(".hero-content__actions");
+    const infoItems = hero.querySelectorAll(".hero-content__info-item");
+    const counts = hero.querySelectorAll(".hero-content__info-count");
 
     setInit(hero, 30);
     [muted, title, subtitle, actions].forEach((el) => setInit(el, 15));
@@ -134,111 +126,43 @@
       });
     });
   }
-
   document.addEventListener("DOMContentLoaded", initHero);
 
   /****************************************
-   * OBSERVER — анимации секций
+   * OBSERVER ДЛЯ КАЖДОГО ЭЛЕМЕНТА
    ****************************************/
-  const sectionObserver = new IntersectionObserver(
+  const animMap = new WeakMap();
+  const elementObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        const sec = entry.target;
-        const name = sec.dataset.sectionName;
-
-        const run = {
-          service() {
-            setShow(sec, 600);
-            sec
-              .querySelectorAll(".service-blocks__item")
-              .forEach((b, i) =>
-                setTimeout(() => setShow(b, 600), 200 + i * 150)
-              );
-          },
-
-          achievements() {
-            setShow(sec, 600);
-            const top = sec.querySelectorAll(".achievements-info__item");
-            const bottom = sec.querySelectorAll(".achievements-stage__item");
-
-            top.forEach((item, i) => {
-              setTimeout(() => {
-                setShow(item, 600);
-                animateCounter(
-                  item.querySelector(".achievements-info__item-count")
-                );
-              }, 200 + i * 200);
-            });
-
-            bottom.forEach((item, i) => {
-              setTimeout(() => {
-                setShow(item, 600);
-                animateCounter(
-                  item.querySelector(".achievements-stage__item-count")
-                );
-              }, 800 + i * 200);
-            });
-          },
-
-          advantages() {
-            setShow(sec, 600);
-            sec
-              .querySelectorAll(".advantages__blocks-item")
-              .forEach((item, i) =>
-                setTimeout(() => setShow(item, 600), 200 + i * 150)
-              );
-          },
-
-          portfolio() {
-            setShow(sec, 600);
-            sec
-              .querySelectorAll(".portfolio-blocks__item")
-              .forEach((item, i) => {
-                setInit(item, 20);
-                setTimeout(() => {
-                  setShow(item, 600);
-                  animateCounter(
-                    item.querySelector(".portfolio-blocks__item-count")
-                  );
-                  animateBar(item);
-                }, i * 200);
-              });
-          },
-
-          about() {
-            setShow(sec, 600);
-            sec
-              .querySelectorAll(".about-blocks__item")
-              .forEach((item, i) =>
-                setTimeout(() => setShow(item, 500), i * 120)
-              );
-          },
-
-          form() {
-            // ✅ форма — только fade + translateY
-            setShow(sec, 700);
-          },
-        };
-
-        if (run[name]) run[name]();
-        else setShow(sec, 600);
-
-        sectionObserver.unobserve(sec);
+        const el = entry.target;
+        const run = animMap.get(el);
+        if (typeof run === "function") run(el);
+        elementObserver.unobserve(el);
+        animMap.delete(el);
       });
     },
     {
-      threshold: 0.05,
+      root: null,
       rootMargin: "0px 0px -10% 0px",
+      threshold: 0.05,
     }
   );
 
+  function observe(el, onEnter) {
+    if (!el) return;
+    animMap.set(el, onEnter);
+    elementObserver.observe(el);
+  }
+
   /****************************************
-   * SECTION PREP INIT
+   * ПОДГОТОВКА СЕКЦИЙ И ЭЛЕМЕНТОВ
    ****************************************/
-  function prepSection(sec, dySection = 40) {
+  function prepSection(sec) {
     if (!sec) return;
 
+    // Авто-имя секции
     if (!sec.dataset.sectionName) {
       if (sec.classList.contains("service"))
         sec.dataset.sectionName = "service";
@@ -253,44 +177,130 @@
       else if (sec.classList.contains("form")) sec.dataset.sectionName = "form";
     }
 
-    if (sec.dataset.sectionName === "form") {
-      setInit(sec, dySection);
-      sectionObserver.observe(sec);
-      return;
+    const name = sec.dataset.sectionName || "";
+
+    // Базовая инициализация секции
+    setInit(sec, 40);
+    sec.style.transition = "opacity .6s ease, transform .6s ease";
+    observe(sec, (el) => setShow(el, 600));
+
+    // Для каждой секции — подэлементы наблюдаем ПО ОТДЕЛЬНОСТИ
+    if (name === "service") {
+      const title = sec.querySelector(".service__title");
+      const subtitle = sec.querySelector(".service__subtitle");
+      const blocks = sec.querySelectorAll(".service-blocks__item");
+
+      setInit(title, 25);
+      setInit(subtitle, 25);
+      blocks.forEach((b) => setInit(b, 20));
+
+      observe(title, (el) => setShow(el, 600));
+      observe(subtitle, (el) => setShow(el, 600));
+      blocks.forEach((b) => observe(b, (el) => setShow(el, 600)));
     }
 
-    setInit(sec, dySection);
+    if (name === "achievements") {
+      const subtitle = sec.querySelector(".achievements__subtitle");
+      const title = sec.querySelector(".achievements__title");
+      const text = sec.querySelector(".achievements__text");
+      const topCards = sec.querySelectorAll(".achievements-info__item");
+      const stageItems = sec.querySelectorAll(".achievements-stage__item");
+      const rows = sec.querySelectorAll(".achievements-stage__height");
 
-    if (sec.classList.contains("service")) {
-      sec
-        .querySelectorAll(".service-blocks__item")
-        .forEach((el) => setInit(el, 20));
-    }
-    if (sec.classList.contains("achievements")) {
-      sec
-        .querySelectorAll(".achievements-info__item")
-        .forEach((el) => setInit(el, 20));
-      sec
-        .querySelectorAll(".achievements-stage__item")
-        .forEach((el) => setInit(el, 20));
-    }
-    if (sec.classList.contains("advantages")) {
-      sec
-        .querySelectorAll(".advantages__blocks-item")
-        .forEach((el) => setInit(el, 30));
-    }
-    if (sec.classList.contains("portfolio")) {
-      sec
-        .querySelectorAll(".portfolio-blocks__item")
-        .forEach((el) => setInit(el, 20));
-    }
-    if (sec.classList.contains("about")) {
-      sec
-        .querySelectorAll(".about-blocks__item")
-        .forEach((el) => setInit(el, 30));
+      setInit(subtitle, 25);
+      setInit(title, 25);
+      setInit(text, 25);
+      topCards.forEach((c) => setInit(c, 20));
+      stageItems.forEach((it) => setInit(it, 20));
+      rows.forEach((r) => setInit(r, 15));
+
+      // подготовка столбиков графика к 0
+      sec.querySelectorAll(".achievements-stage__stage-sep").forEach((bar) => {
+        bar.style.height = "0px";
+        if (!bar.style.transition) bar.style.transition = "height 600ms ease";
+        bar.style.overflow = "hidden";
+      });
+
+      observe(subtitle, (el) => setShow(el, 600));
+      observe(title, (el) => setShow(el, 600));
+      observe(text, (el) => setShow(el, 600));
+
+      topCards.forEach((card) =>
+        observe(card, (el) => {
+          setShow(el, 600);
+          const cnt = el.querySelector(".achievements-info__item-count");
+          if (cnt) animateCounter(cnt, 1200);
+        })
+      );
+
+      stageItems.forEach((it) => observe(it, (el) => setShow(el, 600)));
+
+      rows.forEach((row) =>
+        observe(row, (el) => {
+          setShow(el, 600);
+          const bar = el.querySelector(".achievements-stage__stage-sep");
+          const h = parseFloat(el.dataset.height);
+          if (bar && !isNaN(h)) {
+            bar.style.height = `${h}px`;
+          }
+          const counts = el.querySelectorAll(".counts");
+          const bottom = counts[counts.length - 1];
+          if (bottom) animateCounter(bottom, 1000);
+        })
+      );
+
+      // Левый общий счётчик "Years of experience", если есть
+      const leftCount = sec.querySelector(
+        ".achievements-stage__item .achievements-stage__item-count"
+      );
+      if (leftCount) {
+        observe(leftCount, (el) => animateCounter(el, 1200));
+      }
     }
 
-    sectionObserver.observe(sec);
+    if (name === "advantages") {
+      const title = sec.querySelector(".advantages__title");
+      const text = sec.querySelector(".advantages__text");
+      const blocks = sec.querySelectorAll(".advantages__blocks-item");
+      const list = sec.querySelectorAll(".advantages__list-item");
+
+      setInit(title, 25);
+      setInit(text, 25);
+      blocks.forEach((b) => setInit(b, 30));
+      list.forEach((li) => setInit(li, 20));
+
+      observe(title, (el) => setShow(el, 600));
+      observe(text, (el) => setShow(el, 600));
+      blocks.forEach((b) => observe(b, (el) => setShow(el, 600)));
+      list.forEach((li) => observe(li, (el) => setShow(el, 600)));
+    }
+
+    if (name === "portfolio") {
+      const items = sec.querySelectorAll(".portfolio-blocks__item");
+      items.forEach((item) => {
+        setInit(item, 20);
+        observe(item, (el) => {
+          setShow(el, 600);
+          const count = el.querySelector(".portfolio-blocks__item-count");
+          if (count) animateCounter(count);
+          animateBar(el);
+        });
+      });
+    }
+
+    if (name === "about") {
+      const items = sec.querySelectorAll(".about-blocks__item");
+      items.forEach((it) => {
+        setInit(it, 60);
+        observe(it, (el) => setShow(el, 500));
+      });
+    }
+
+    if (name === "form") {
+      // Только секция. Внутренние элементы НЕ трогаем.
+      setInit(sec, 60);
+      // (секция уже наблюдается выше через observe(sec, ...))
+    }
   }
 
   document.addEventListener("DOMContentLoaded", () => {

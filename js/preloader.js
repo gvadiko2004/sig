@@ -40,3 +40,5 @@ function updateProgress() {
 }
 
 updateProgress();
+
+

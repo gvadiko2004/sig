@@ -2,9 +2,9 @@
   position: relative;
 
   .cirlcle-filter-purple {
-  left: -10vw;
-  bottom: 0;
-}
+    left: -10vw;
+    bottom: 0;
+  }
 
   // .achievements__inner
 
@@ -66,7 +66,7 @@
     background: rgba(23, 23, 23, 0.2); // стеклянный фон
 
     @include inner-shadow-premium();
- @include defBlock;
+    @include defBlock;
 
     @media (max-width: 440px) {
       min-height: 232px;
@@ -143,6 +143,14 @@
 
   margin-top: 16px;
 
+  .achievements-stage__item-subtitle {
+    margin: 8px 0 20px 0;
+
+    &.sep {
+      margin-bottom: 0 !important;
+    }
+  }
+
   @media (max-width: 1080px) {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -156,7 +164,46 @@
 
     padding: 36px 32px;
 
-     @include defBlock;
+    position: relative;
+    border-radius: 12px;
+    background: rgba(23, 23, 23, 0.2); // стеклянный фон
+
+    @include inner-shadow-premium();
+    @include defBlock;
+
+    @media (max-width: 440px) {
+      min-height: 232px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0; // заменяет left+right+top+bottom: 0
+
+      border-radius: inherit;
+      padding: 1px; // толщина рамки
+      background: linear-gradient(135deg, #ffffff73, #3b3b3b, #000000);
+
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      z-index: -1; // рамка под содержимым
+    }
+
+    .contentss {
+      position: absolute;
+      bottom: 32px;
+
+      @media (max-width: 1080px) {
+        position: static;
+        
+      }
+    }
+
+    @include defBlock;
 
     @media (max-width: 440px) {
       min-height: 232px;
@@ -218,7 +265,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 40px;
+    // margin-bottom: 40px;
 
     display: flex;
     flex-direction: column;
@@ -279,4 +326,174 @@
   }
 }
 
+.achievements-stage__height {
+  .achievements-stage__item-count {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
+  // .achievements-stage__height
+
+  .counts {
+    color: var(--Gray-200, #b4b4b4) !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 142.857% !important;
+
+    &:nth-child(2) {
+      font-weight: 700 !important;
+    }
+  }
+}
+
+.achievements-stage__items {
+  display: flex;
+  padding: 36px 32px;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 0;
+
+  position: relative;
+  border-radius: 12px;
+  background: rgba(23, 23, 23, 0.2); // стеклянный фон
+
+  @include inner-shadow-premium();
+  @include defBlock;
+
+  @media (max-width: 440px) {
+    min-height: 232px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0; // заменяет left+right+top+bottom: 0
+
+    border-radius: inherit;
+    padding: 1px; // толщина рамки
+    background: linear-gradient(135deg, #ffffff73, #3b3b3b, #000000);
+
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+    z-index: -1; // рамка под содержимым
+  }
+}
+
+.achievements-stage__item-items {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.achievements-stage__stage-sep {
+  max-width: 100%;
+  width: 100%;
+  background: var(--1, linear-gradient(90deg, #e59cff 0.01%, #6067ee 148.83%));
+  background-blend-mode: screen;
+  margin: 4px 0;
+  display: block;
+}
+
+/* стартовое состояние для элементов */
+.achievements-init {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.achievements-show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+/* рост столбцов */
+.achievements-stage__stage-sep {
+  height: 0;
+  overflow: hidden;
+  transition: height .6s ease;
+}
+
+
+// .items-1 {
+//   .achievements-stage__stage-sep {
+//     height: 18px;
+//   }
+// }
+
+// .items-2 {
+//   .achievements-stage__stage-sep {
+//     height: 26px;
+//   }
+// }
+
+// .items-3 {
+//   .achievements-stage__stage-sep {
+//     height: 32px;
+//   }
+// }
+
+// .items-4 {
+//   .achievements-stage__stage-sep {
+//     height: 39px;
+//   }
+// }
+
+// .items-5 {
+//   .achievements-stage__stage-sep {
+//     height: 36px;
+//   }
+// }
+
+// .items-6 {
+//   .achievements-stage__stage-sep {
+//     height: 44px;
+//   }
+// }
+
+// .items-7 {
+//   .achievements-stage__stage-sep {
+//     height: 54px;
+//   }
+// }
+
+// .items-8 {
+//   .achievements-stage__stage-sep {
+//     height: 69px;
+//   }
+// }
+
+
+.achievements-stage__stage-sep {
+  height: 0;                /* стартуем с 0 */
+  transition: height 0.6s ease;   /* плавная анимация */
+  overflow: hidden;
+}
+
+
+.achievements-stage__items {
+  width: 100%;
+  @media (min-width: 1080px) {
+    min-height: 260px;
+
+    .achievements-stage__item-items {
+      min-height: 112px;
+    }
+  }
+}
+
+.achievements-stage__item {
+  @media (max-width: 1080px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

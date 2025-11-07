@@ -81,3 +81,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const fields = document.querySelectorAll(".user-action input, .user-action textarea");
+
+  fields.forEach((field) => {
+    const toggleOpacity = () => {
+      if (field.value.trim().length > 0 || field === document.activeElement) {
+        field.classList.add("active");
+      } else {
+        field.classList.remove("active");
+      }
+    };
+
+    field.addEventListener("input", toggleOpacity);
+    field.addEventListener("focus", toggleOpacity);
+    field.addEventListener("blur", toggleOpacity);
+
+    // запуск при загрузке, если авто-заполнение (autocomplete)
+    toggleOpacity();
+  });
+});

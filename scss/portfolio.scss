@@ -46,7 +46,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 
-    @media (max-width: 1080px) {
+    @media (max-width: 440px) {
       grid-template-columns: 1fr;
     }
   }
@@ -212,8 +212,7 @@
     border: 1px solid transparent; // ✅ исправление
 
     transition: all 0.2s ease !important; // ✅ фокус только на цвете
-    
-    
+
     cursor: pointer;
     &.active {
       border-color: #e59cff;

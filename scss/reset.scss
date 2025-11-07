@@ -252,3 +252,22 @@ a {
     height: 164px;
   }
 }
+
+
+/* Убираем стрелки в Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Убираем стрелки в Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+
+.input-reset.active {
+  opacity: 1 !important;
+}
