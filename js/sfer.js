@@ -16,3 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     foreign.setAttribute("y", -(height + 12)); // отступ сверху от круга
   });
 });
+
+
+
+
